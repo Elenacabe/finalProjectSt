@@ -1,0 +1,1 @@
+/*Creator, title, description, prize??,random word??->api, due date, stories, closed???winner??*/
