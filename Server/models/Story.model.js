@@ -15,8 +15,8 @@ const storySchema = new Schema({
     story: {
         type: String,
         required: true,
-        minLength: [120, "It's a short story, not a word"],
-        maxLength: [700, "It's not a novel"]
+        minLength: [120, "Tienes que escribir al menos 120 caracteres"],
+        maxLength: [700, "No puedes pasarte de 700 caracteres"]
     },
 
     cover: {
@@ -36,6 +36,6 @@ const storySchema = new Schema({
     timeStamps: true
 }
 )
-const Story = model("story", storySchema)
+const Story = model("Story", storySchema)
 
 module.exports = Story

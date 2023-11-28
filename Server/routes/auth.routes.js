@@ -39,48 +39,6 @@ router.post('/signup', (req, res, next) => {
 })
 
 
-router.get('/edit/:_id', (req, res, next) => {
-    const { _id } = req.params
-
-    User.findById(_id)
-        .then((user) => {
-            if (!user) {
-                return res.status(404).json({ message: 'User not found' })
-            }
-            const { username, avatar, role, following, about } = user
-            res.json({ username, avatar, role, following, about })
-        })
-        .catch((err) => next(err))
-})
-
-
-
-router.put('/edit/:_id', (req, res, next) => {
-    const { username, avatar, role, following, about } = req.body
-    const { _id } = req.params
-    User
-        .findByIdAndUpdate({ _id }, {
-            username,
-            avatar,
-            role,
-            following,
-            about
-
-        })
-        .then(updatedUser => res.json(updatedUser))
-        .catch(err => next(err))
-
-})
-
-
-router.delete('/delete/:_id', (req, res, nex) => {
-    const { _id } = req.params
-    User
-        .findByIdAndDelete({ _id })
-        .then(() => res.sendStatus(200).json)
-        .catch(err => next(err))
-})
-
 
 
 router.post('/login', (req, res, next) => {
@@ -103,8 +61,8 @@ router.post('/login', (req, res, next) => {
 
             if (bcrypt.compareSync(password, foundUser.password)) {
 
-                const { _id, email, username } = foundUser;
-                const payload = { _id, email, username }
+                const { _id, email, username, role, avatar } = foundUser;
+                const payload = { _id, email, username, role, avatar }
 
                 const authToken = jwt.sign(
                     payload,

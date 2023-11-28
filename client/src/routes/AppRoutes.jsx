@@ -18,7 +18,7 @@ const AppRoutes = () => {
             <Route path={"/logIn"} element={<LogInPage />} />
             <Route path={"/microrrelatos"} element={<StoryListPage />} />
             <Route path={"/usuarios"} element={<UserListPage />} />
-            <Route path={"/usuarios/detalles/:_id"} element={<UserDetailsPage />} />
+            <Route path={"/usuarios/detalles/:userId"} element={<UserDetailsPage />} />
             <Route path={"/microrrelatos/detalles/:_id"} element={<StoryDetailsPage />} />
             <Route path={"/miPerfil"} element={<MyProfilePage />} />
             <Route path={"/logOut"} element={<HomePage />} />

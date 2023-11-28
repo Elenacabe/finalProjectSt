@@ -1,4 +1,4 @@
-const { Schema, model, SchemaType } = require("mongoose")
+const { Schema, model } = require("mongoose")
 
 //pasar a utils?
 const validateAge = function (value) {
@@ -34,18 +34,16 @@ const userSchema = new Schema(
     birthDate: {
       type: Date,
       required: true,
-      validate: [validateAge, 'Invalid birthdate. User must be at least 18 years old.']
+      validate: [validateAge, 'Debes tener al menos 18 años.']
     },
     avatar: {
       type: String,
-      default: ""
-
+      default: "https://shorturl.at/kowxI"
     },
     about: {
       type: String,
-      default: 'Soy la descrpción',
-      minLength: [10, 'You have to write at least 10 chars']
-
+      default: 'Descripción no aportada',
+      minLength: [10, 'Debes escribir al menos 10 caracteres']
     },
     role: {
       type: String,
@@ -55,18 +53,15 @@ const userSchema = new Schema(
     // contest: {
 
     // },
-    stories: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Story'
-
-    }],
-    following: [{
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-    }],
+    following: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
     password: {
       type: String,
-      required: [true, 'Password is required.']
+      required: [true, 'La contraseña es requerida']
     }
   },
   {
@@ -78,3 +73,4 @@ const userSchema = new Schema(
 const User = model("User", userSchema)
 
 module.exports = User
+

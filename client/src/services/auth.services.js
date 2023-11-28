@@ -1,14 +1,12 @@
 import axios from 'axios'
 
-
 class AuthService {
-    //${import.meta.env.VITE_API_URL}------------------------------------------------------------PREGUNTAR SOS
     constructor() {
+
         this.api = axios.create({
-            baseURL: `http://localhost:5005/api/auth`
+            baseURL: `${import.meta.env.VITE_API_URL}/auth`
         })
     }
-
 
     signup(userData) {
         return this.api.post('/signup', userData)
