@@ -15,7 +15,6 @@ const storySchema = new Schema({
     story: {
         type: String,
         required: true,
-        minLength: [120, "Tienes que escribir al menos 120 caracteres"],
         maxLength: [700, "No puedes pasarte de 700 caracteres"]
     },
 

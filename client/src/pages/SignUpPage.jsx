@@ -3,7 +3,7 @@ import SignUpForm from "../components/SignUpForm/SignUpForm.jsx"
 const SignUpPage = () => {
     return (
         <>
-            <h1 style={{ textAlign: "center" }}>REGIIIIIIIIIIIIISTRITO</h1>
+            <h1 style={{ textAlign: "center" }}>Regístrate</h1>
 
             <SignUpForm></SignUpForm>
 

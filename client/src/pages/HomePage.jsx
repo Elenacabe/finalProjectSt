@@ -1,12 +1,9 @@
+import StoryCard from "../components/StoryCard/StoryCard"
 const HomePage = () => {
     return (
         <>
-            <h1>HOLA SOY HOME</h1>
-            <h1>HOLA SOY HOME</h1>
-            <h1>HOLA SOY HOME</h1>
-            <h1>HOLA SOY HOME</h1>
-            <h1>HOLA SOY HOME</h1>
-            <h1>HOLA SOY HOME</h1>
+            <h2>Lee los microrrelatos:</h2>
+            <StoryCard></StoryCard>
 
 
         </>

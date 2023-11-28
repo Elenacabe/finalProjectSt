@@ -47,7 +47,7 @@ const Navigation = () => {
                                 ?
                                 <NavDropdown title="Otras opciones" id="navbarScrollingDropdown">
                                     <NavDropdown.Item>
-                                        <Link to="/miPerfil">Perfil</Link>
+                                        <Link to={`/usuarios/detalles/${loggedUser._id}`}>Perfil</Link>
                                     </NavDropdown.Item>
                                     <NavDropdown.Item>
                                         <Link to="/profile/Microrrelatos">Mis Microrrelatos</Link>

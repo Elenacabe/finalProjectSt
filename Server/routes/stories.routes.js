@@ -5,7 +5,8 @@ const Story = require('./../models/Story.model')
 router.post('/newStory', (req, res, next) => {
     const { writer, title, story, cover } = req.body
 
-    Story.create({ writer, title, story, cover })
+    Story
+        .create({ writer, title, story, cover })
         .then(() => res.sendStatus(200))
         .catch((err) => next(err))
 })
@@ -20,9 +21,9 @@ router.get('/getAllStories', (req, res, next) => {
 })
 
 
-router.get('/details/:story_id', (req, res, next) => {
-    const { story_id } = req.params
-    Story.findById(story_id)
+router.get('/details/:storyId', (req, res, next) => {
+    const { storyId } = req.params
+    Story.findById(storyId)
         .populate('writer', 'username')
         .populate('comments')
         .then((story) => {

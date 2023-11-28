@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import profileService from "../services/profile.services"
 import { Card, ListGroup } from 'react-bootstrap'
 
@@ -7,10 +7,8 @@ function UserDetailsPage() {
     const { userId } = useParams()
     const [userDetails, setUserDetails] = useState({})
 
-    console.log("------------------------", userDetails.length)
 
     useEffect(() => {
-        console.log("------------------------", userDetails)
         loadProfileDet()
     }, [])
 
@@ -54,7 +52,8 @@ function UserDetailsPage() {
 
                             </ListGroup>
                             <Card.Body>
-                                <Card.Link href="#">Volver</Card.Link>
+                                <Link to="/usuarios">Volver</Link>
+
                             </Card.Body>
                         </Card>
 
