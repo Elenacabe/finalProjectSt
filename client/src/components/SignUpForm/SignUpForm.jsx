@@ -11,6 +11,7 @@ const SignUpForm = () => {
         username: '',
         email: '',
         birthDate: '',
+        avatar: '',
         about: '',
         password: ''
     })
@@ -43,6 +44,10 @@ const SignUpForm = () => {
                 <Form.Label>Nombre de usuario</Form.Label>
                 <Form.Control type="text" value={signupData.username} onChange={handleInputChange} name="username" className="custom-input" />
             </Form.Group>
+            <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="avatar">
+                <Form.Label>Avatar</Form.Label>
+                <input type="file" value={signupData.avatar} onChange={handleInputChange} name="avatar" className="custom-input" />
+            </Form.Group>
 
             <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="birthDate">
                 <Form.Label>Fecha de nacimiento</Form.Label>
@@ -69,7 +74,7 @@ const SignUpForm = () => {
                     Registrarme
                 </Button>
             </div> */}
-        </Form>
+        </Form >
 
     )
 

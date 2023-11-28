@@ -1,6 +1,13 @@
+import './Footer.css'
 function Footer() {
     return (
-        <div>Hola soy el futer heheh</div>
+        <>
+            <div>
+
+                <p className='foot'>👋</p>
+
+            </div>
+        </>
     )
 }
 export default Footer

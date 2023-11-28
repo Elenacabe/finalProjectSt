@@ -1,20 +1,24 @@
 import "./StoryCard.css"
 import storyService from '../../services/story.services'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 
 const StoryCard = () => {
     const [storyList, setStoryList] = useState([])
 
-    storyService
-        .getStoryList()
-        .then(({ data }) => {
-            setStoryList(data)
-            console.log(storyList[0].title)
+    useEffect(() => {
+        storyService
+            .getStoryList()
+            .then(({ data }) => {
+                setStoryList(data)
 
-        })
-        .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+
+
     return (
         <>
             {!storyList ?
@@ -27,6 +31,7 @@ const StoryCard = () => {
                             <h1>{u.title}</h1>
                             <p>{u.story}</p>
                             <Link to={`/microrrelatos/detalles/${u._id}`}>Detalles</Link>
+                            <form action=""></form>
                         </div>)
 
 

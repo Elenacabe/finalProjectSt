@@ -11,8 +11,7 @@ const StoryForm = () => {
     const [storyData, setStoryData] = useState({
         writer: loggedUser._id,
         title: '',
-        story: '',
-        cover: ''
+        story: ''
     })
 
     const handleInputChange = e => {

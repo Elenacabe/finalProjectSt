@@ -51,7 +51,7 @@ function StoryDetailsPage() {
 
                             </ListGroup>
                             <Card.Body>
-                                <Link to={`/usuarios/detalles/${storyDetails.writer._id}`}>Conoce a ${storyDetails.writer.username}</Link>
+                                <Link to={`/usuarios/detalles/${storyDetails.writer._id}`}>Conoce a {storyDetails.writer.username}</Link>
 
                             </Card.Body>
                         </Card>

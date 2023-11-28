@@ -20,7 +20,7 @@ const storySchema = new Schema({
 
     cover: {
         type: String,
-        default: "https://forreadingaddicts.co.uk/wp-content/uploads/2016/09/cat-reading.jpg"
+        default: "https://shorturl.at/kowxI"
     },
     valoration: {
         type: Number,

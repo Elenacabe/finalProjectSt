@@ -8,7 +8,6 @@ import { AuthContext } from '../contexts/auth.context';
 const Navigation = () => {
     const { loggedUser, logOut } = useContext(AuthContext)
 
-    console.log("user desde navegacion", loggedUser)
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
