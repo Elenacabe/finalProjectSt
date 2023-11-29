@@ -52,10 +52,11 @@ router.put('/edit/:_id', (req, res, next) => {
 })
 
 
-router.delete('/delete/:_id', (req, res, nex) => {
+router.post('/delete/:_id', (req, res, next) => {
     const { _id } = req.params
+    console.log('parametros', req.params._id._id)
     User
-        .findByIdAndDelete({ _id })
+        .findByIdAndDelete(_id)
         .then(() => res.sendStatus(200).json)
         .catch(err => next(err))
 })

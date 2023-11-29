@@ -1,14 +1,8 @@
 const { Schema, model } = require("mongoose")
+const validateAge = require("../utils/validateAge")
 
 //pasar a utils?
-const validateAge = function (value) {
-  const currentDate = new Date()
-  const birthdate = new Date(value)
-  const age = currentDate.getFullYear() - birthdate.getFullYear()
-  if (age < 18) {
-    throw new Error('Age must be at least 18 years old.')
-  }
-}
+
 
 const userSchema = new Schema(
   {
@@ -26,11 +20,6 @@ const userSchema = new Schema(
       unique: true
 
     },
-    // name: {
-    //   type: String,
-    //   trim: true,
-    //   required: true
-    // },
     birthDate: {
       type: Date,
       required: true,
@@ -50,9 +39,6 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
-    // contest: {
-
-    // },
     following: [
       {
         type: Schema.Types.ObjectId,

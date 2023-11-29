@@ -27,12 +27,15 @@ const StoryCard = () => {
 
                 storyList.map((u) => {
                     return (
-                        <div className='cardo' key={u._id}>
-                            <h1>{u.title}</h1>
-                            <p>{u.story}</p>
-                            <Link to={`/microrrelatos/detalles/${u._id}`}>Detalles</Link>
-                            <form action=""></form>
+                        <div className="eachElement">
+                            <div className='storyCard' key={u._id}>
+                                <h1 className="textColor">{u.title}</h1>
+                                <p>{u.story}</p>
+                                <Link className="textColor" to={`/microrrelatos/detalles/${u._id}`}>Detalles</Link>
+                                <form action=""></form>
+                            </div>
                         </div>)
+
 
 
                 })

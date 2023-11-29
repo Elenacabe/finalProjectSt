@@ -1,8 +1,25 @@
-.cardo {
-    position: sticky;
-    top: 0;
-    background: white;
-    padding: 1.5rem;
-    box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
-    border-radius: 4px;
+.eachElement {
+    margin: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textColor {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: orange;
+}
+
+.storyCard {
+    display: inline-block;
+    margin: 5px;
+    width: 300px;
+    height: 500px;
+    background-color: white;
+
+
+    box-shadow: 10%;
+    text-align: center;
+    padding: 5px;
 }

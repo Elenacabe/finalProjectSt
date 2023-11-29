@@ -21,8 +21,8 @@ class ProfileService {
     editUser(userId) {
         return this.api.post('/edit', userId)
     }
-    delete(userData) {
-        return this.api.post('/delete', userData)
+    deleteUser(_id) {
+        return this.api.post(`/delete/${_id}`)
     }
 
 

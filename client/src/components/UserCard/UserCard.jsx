@@ -1,11 +1,42 @@
 import { Card, Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../contexts/auth.context"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
+import profileService from "../../services/profile.services"
+import { useNavigate } from "react-router-dom"
 
 
 const UserCard = ({ username, avatar, about, _id }) => {
     const { loggedUser, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const { authenticateUser } = useContext(AuthContext)
+
+
+
+
+
+    const handleDelete = () => {
+
+
+
+        profileService
+            .deleteUser(_id)
+            .then(() => {
+                if (loggedUser.role === "ADMIN" && loggedUser._id !== _id) {
+                    console.log("soy admin y no soy ese")
+                    navigate('/')
+                } else {
+                    navigate('/')
+                }
+
+
+            })
+            .catch(err => console.log(err))
+
+
+    }
+
+
 
 
     return (
@@ -22,7 +53,7 @@ const UserCard = ({ username, avatar, about, _id }) => {
                         {
                             loggedUser.role == 'ADMIN' || loggedUser._id == _id
                                 ?
-                                <Button variant="danger" style={{ margin: '20px' }} >Delete</Button>//hacer form
+                                <Button onClick={handleDelete} className="btn btn-danger mr-2" style={{ margin: '20px' }} >Borrar</Button>//hacer form
                                 :
                                 <></>
                         }

@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Form, Button, Col } from "react-bootstrap"
 import authService from "../../services/auth.services"
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../contexts/auth.context"
+import { useContext } from "react"
 import "./LoginForm.css"
 
 const LogInForm = () => {
@@ -17,6 +19,7 @@ const LogInForm = () => {
     }
 
     const navigate = useNavigate()
+    const { authenticateUser } = useContext(AuthContext)
 
     const handleFormSubmit = e => {
         e.preventDefault()
@@ -25,7 +28,9 @@ const LogInForm = () => {
             .login(loginData)
             .then((response) => {
                 localStorage.setItem('authToken', response.data.authToken)
+                authenticateUser()
                 navigate('/')
+
             })
             .catch((err) => console.log(err))
     }

@@ -48,7 +48,9 @@ const StoryForm = () => {
 
                         <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="story">
                             <Form.Label>Relato</Form.Label>
-                            <Form.Control type="text" value={storyData.story} onChange={handleInputChange} name="story" className="custom-input" />
+                            <br />
+                            <textarea name="story" id="" cols="60" rows="10" onChange={handleInputChange} value={storyData.story}></textarea>
+                            {/* <Form.Control type="text" value={storyData.story} onChange={handleInputChange} name="story" className="custom-input" /> */}
                         </Form.Group>
                         <div className="d-grid">
                             <Button variant="dark" type="submit">Registrar historia</Button>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Container, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap/'
 import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../contexts/auth.context';
@@ -7,21 +7,24 @@ import { AuthContext } from '../contexts/auth.context';
 
 const Navigation = () => {
     const { loggedUser, logOut } = useContext(AuthContext)
+    console.log(loggedUser)
+
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
-                <Navbar.Brand >{
-                    loggedUser
-                        ?
-                        <>
-                            <NavItem><img src={loggedUser.avatar} alt="Avatar" className='userAvatar' ></img></NavItem>
+                <Navbar.Brand >
+                    {
+                        loggedUser
+                            ?
+                            <>
+                                <NavItem><img src={loggedUser.avatar} alt="Avatar" className='userAvatar' ></img></NavItem>
+                                <Link to="/" className="nav-item nav-link">LongStoryShort</Link>
+                            </>
+                            :
                             <Link to="/" className="nav-item nav-link">LongStoryShort</Link>
-                        </>
-                        :
-                        <Link to="/" className="nav-item nav-link">LongStoryShort</Link>
 
-                }
+                    }
                 </Navbar.Brand>
 
                 {

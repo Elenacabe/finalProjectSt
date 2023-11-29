@@ -1,0 +1,15 @@
+.orangeFlash {
+    color: orange;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.detailsFlash {
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto
+}
