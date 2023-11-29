@@ -25,7 +25,9 @@ router.get('/details/:storyId', (req, res, next) => {
     const { storyId } = req.params
     Story.findById(storyId)
         .populate('writer', 'username')
-        .populate('comments')
+        .populate({
+            path: 'comments'
+        })
         .then((story) => {
             if (!story) {
                 return res.status(404).json({ error: 'Story not found' })

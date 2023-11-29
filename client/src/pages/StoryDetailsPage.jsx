@@ -63,7 +63,7 @@ function StoryDetailsPage() {
                             </Card>
                         </Col>
                         <Col >
-                            <Comments></Comments>
+                            <Comments comments={storyDetails.comments} storyId={storyId}></Comments>
                         </Col>
 
 

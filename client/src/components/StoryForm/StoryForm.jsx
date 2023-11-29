@@ -38,7 +38,7 @@ const StoryForm = () => {
                     <Form className="custom-form" onSubmit={handleFormSubmit} >
                         <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="writer">
                             <Form.Label>Writer</Form.Label>
-                            <Form.Control type="text" value={loggedUser.username} name="writer" readOnly={true} />
+                            <Form.Control disabled={true} type="text" value={loggedUser.username} name="writer" readOnly={true} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="title">

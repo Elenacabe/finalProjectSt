@@ -1,0 +1,21 @@
+.eachElement {
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.textColor {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: orange;
+}
+
+.userCard {
+    margin: 5px;
+    width: 300px;
+    background-color: white;
+    box-shadow: 3px;
+    text-align: center;
+
+    padding: 5px;
+}

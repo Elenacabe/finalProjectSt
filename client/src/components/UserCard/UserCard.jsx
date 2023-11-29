@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/auth.context"
 import { useContext, useEffect } from "react"
 import profileService from "../../services/profile.services"
 import { useNavigate } from "react-router-dom"
+import './UserCard.css'
 
 
 const UserCard = ({ username, avatar, about, _id }) => {
@@ -43,8 +44,8 @@ const UserCard = ({ username, avatar, about, _id }) => {
         <>
             <Card style={{ width: '18rem', margin: '20px' }} className="mb-3">
                 <Card.Img variant="top" src={avatar} />
-                <Card.Body>
-                    <Card.Title>{username}</Card.Title>
+                <Card.Body className="userCard">
+                    <h1 className="textColor">{username}</h1>
                     <Card.Text>
                         {about}
                     </Card.Text>
@@ -59,7 +60,7 @@ const UserCard = ({ username, avatar, about, _id }) => {
                         }
                     </Card.Subtitle>
                 </Card.Body>
-            </Card>
+            </Card >
         </>)
 }
 export default UserCard

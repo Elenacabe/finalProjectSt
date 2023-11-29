@@ -40,7 +40,8 @@
 
 .comments-section {
     height: 30vh;
-    overflow-y: auto
+    overflow-y: auto;
+    box-shadow: 12px 12px 2px 1px #818283;
 }
 
 .comment-container {
@@ -49,7 +50,8 @@
     width: 465px;
     text-align: justify;
     overflow-y: auto;
-    background-color: rgb(225, 222, 216);
+    color: black;
+    background-color: #f8f9fa;
     border-radius: 5px;
     margin: 10px 0;
     word-break: break-all;

@@ -1,15 +1,28 @@
 const express = require('express')
 const router = express.Router()
 const Comment = require('./../models/Comment.model')
+const Story = require('../models/Story.model')
 
 
 
 router.post('/newComment', (req, res, next) => {
-    const { author, comment } = req.body
+    const { author, comment, storyId } = req.body
+    console.log({ author, comment, storyId })
 
     Comment
         .create({ author, comment })
-        .then(() => res.sendStatus(200))
+        .then((newComment) => {
+            Story.findById(storyId)
+                .then(foundStory => {
+                    foundStory.comments.push(newComment._id);
+                    foundStory.save()
+                        .then(() => {
+                            res.json(newComment)
+                        })
+                        .catch((err) => next(err))
+                })
+                .catch((err) => next(err))
+        })
         .catch((err) => next(err))
 })
 

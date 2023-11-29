@@ -4,17 +4,17 @@ import { AuthContext } from "../../contexts/auth.context"
 import './Comments.css'
 
 
-function Comments() {
+function Comments({ storyId, comments }) {
     const [comment, setComment] = useState('')
-    const [comments, setComments] = useState([])
+    const [newComments, setComments] = useState(comments)
     const { loggedUser, logOut } = useContext(AuthContext)
 
     const onClickHandler = () => {
         commentService
-            .createComment({ comment: comment, author: loggedUser._id })
+            .createComment({ comment: comment, author: loggedUser._id, storyId })
             .then(
-                (createdComment) => {
-                    setComments((comments) => [...comments, createdComment])
+                ({ data }) => {
+                    setComments((comments) => [...comments, data])
                     setComment('')
                 }
             )
@@ -26,7 +26,7 @@ function Comments() {
     return (
         <div className="main-container">
             <div className="comments-section">
-                {comments.map((eachComment) => (
+                {newComments.map((eachComment) => (
                     <div className="comment-container">{eachComment.comment} By {eachComment.author}</div>
                 ))}
             </div>
