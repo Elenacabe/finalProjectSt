@@ -2,23 +2,21 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from 'react-router-dom'
 import profileService from "../services/profile.services"
 import { Card, ListGroup } from 'react-bootstrap'
+import Loader from "../components/Loader/Loader"
 
 function UserDetailsPage() {
     const { userId } = useParams()
-    const [userDetails, setUserDetails] = useState({})
-
+    const [userDetails, setUserDetails] = useState()
 
     useEffect(() => {
-        loadProfileDet()
+        loadProfileDetails()
     }, [])
 
-
-    const loadProfileDet = () => {
+    const loadProfileDetails = () => {
         profileService
             .getDetails(userId)
             .then(({ data }) => {
                 setUserDetails(data)
-
             })
             .catch(err => console.log(err))
     }
@@ -26,41 +24,35 @@ function UserDetailsPage() {
     return (
         <>
             {
-                userDetails.username !== undefined
+                userDetails
                     ?
-                    <>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={userDetails.avatar} />
-                            <Card.Body>
-                                <Card.Title>{userDetails.name}</Card.Title>
-                                <Card.Text>
-                                    {userDetails.about}
-                                </Card.Text>
-                            </Card.Body>
-                            <ListGroup className="list-group-flush">
-                                {
-                                    userDetails.following.length
-                                        ?
-                                        <>
-                                            {userDetails.following.map((e, index) => {
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src={userDetails.avatar} />
+                        <Card.Body>
+                            <Card.Title>{userDetails.name}</Card.Title>
+                            <Card.Text>
+                                {userDetails.about}
+                            </Card.Text>
+                        </Card.Body>
+                        <ListGroup className="list-group-flush">
+                            {
+                                userDetails.following.length
+                                    ?
+                                    userDetails.following.map((e, index) => {
+                                        return <ListGroup.Item key={index}>{e}</ListGroup.Item>
+                                    })
+                                    :
+                                    <Card.Body>No tengo followers</Card.Body>
+                            }
 
-                                                <ListGroup.Item key={index}>{e}</ListGroup.Item>
-                                            })}
-                                        </> :
-                                        <Card.Body>No tengo followers</Card.Body>
-                                }
-
-                            </ListGroup>
-                            <Card.Body>
-                                <Link to="/usuarios">Volver</Link>
-
-                            </Card.Body>
-                        </Card>
-
-                    </> :
-                    <h1>Loading...</h1>
+                        </ListGroup>
+                        <Card.Body>
+                            <Link to="/usuarios">Volver</Link>
+                        </Card.Body>
+                    </Card>
+                    :
+                    <Loader />
             }
-
         </>
     )
 }

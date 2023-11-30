@@ -8,17 +8,12 @@ import './UserCard.css'
 
 
 const UserCard = ({ username, avatar, about, _id }) => {
+
     const { loggedUser, logOut } = useContext(AuthContext)
     const navigate = useNavigate()
     const { authenticateUser } = useContext(AuthContext)
 
-
-
-
-
     const handleDelete = () => {
-
-
 
         profileService
             .deleteUser(_id)
@@ -29,12 +24,8 @@ const UserCard = ({ username, avatar, about, _id }) => {
                 } else {
                     navigate('/')
                 }
-
-
             })
             .catch(err => console.log(err))
-
-
     }
 
 
@@ -42,7 +33,7 @@ const UserCard = ({ username, avatar, about, _id }) => {
 
     return (
         <>
-            <Card style={{ width: '18rem', margin: '20px' }} className="mb-3">
+            <div style={{ width: '18rem', margin: '20px' }} className=" eachElement">
                 <Card.Img variant="top" src={avatar} />
                 <Card.Body className="userCard">
                     <h1 className="textColor">{username}</h1>
@@ -50,17 +41,15 @@ const UserCard = ({ username, avatar, about, _id }) => {
                         {about}
                     </Card.Text>
                     <Card.Subtitle className="mb-2 text-muted">
-                        <Link to={`/usuarios/detalles/${_id}`} className="btn btn-success mr-2">Detalles</Link>
+                        <Link to={`/usuarios/detalles/${_id}`} className="btn btn-outline-success mr-2">Detalles</Link>
                         {
                             loggedUser.role == 'ADMIN' || loggedUser._id == _id
-                                ?
-                                <Button onClick={handleDelete} className="btn btn-danger mr-2" style={{ margin: '20px' }} >Borrar</Button>//hacer form
-                                :
-                                <></>
+                            && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>//hacer form
+
                         }
                     </Card.Subtitle>
                 </Card.Body>
-            </Card >
+            </div >
         </>)
 }
 export default UserCard

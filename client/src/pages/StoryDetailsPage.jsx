@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import storyService from "../services/story.services"
 import { Card, ListGroup, Col, Row } from 'react-bootstrap'
 import Comments from "../components/Comments/Comments"
-
+import Loader from "../components/Loader/Loader"
 
 function StoryDetailsPage() {
     const { storyId } = useParams()
-    const [storyDetails, setStoryDetails] = useState({})
-
+    const [storyDetails, setStoryDetails] = useState()
 
     useEffect(() => {
-        loadStoryDet()
+        loadStoryDetails()
     }, [])
 
-
-    const loadStoryDet = () => {
+    const loadStoryDetails = () => {
         storyService
             .getDetails(storyId)
             .then(({ data }) => {
@@ -27,11 +25,11 @@ function StoryDetailsPage() {
     return (
         <>
             {
-                storyDetails.title !== undefined
+                storyDetails
                     ?
                     <Row>
-                        <Col>
-                            <Card style={{ width: '18rem' }} className="detailsFlash">
+                        <Col md={{ span: 6 }}>
+                            <Card className="detailsFlash">
                                 <Card.Img variant="top" src={storyDetails.cover} />
                                 <Card.Body>
                                     <h1 className="orangeFlash">{storyDetails.title}</h1>
@@ -40,35 +38,28 @@ function StoryDetailsPage() {
                                     </Card.Text>
                                 </Card.Body>
                                 <ListGroup className="list-group-flush">
+                                    {/* TODO: DESACOPLAR LISTADO DE LIKES */}
                                     {
                                         storyDetails.likes.length
                                             ?
-                                            <>
-                                                {storyDetails.likes.map((e, index) => {
-
-                                                    <ListGroup.Item key={index}>{e}</ListGroup.Item>
-                                                })}
-                                            </> :
-                                            <Card.Body>No tengo likes </Card.Body>
+                                            storyDetails.likes.map((e, index) => {
+                                                return <ListGroup.Item key={index}>{e}</ListGroup.Item>
+                                            })
+                                            :
+                                            <Card.Body>No tengo likes</Card.Body>
                                     }
-
                                 </ListGroup>
                                 <Card.Body>
-
                                     {/* <Link className="orangeFlash" to={`/usuarios/detalles/${storyDetails.writer._id}`}>Conoce a {storyDetails.writer.username}</Link> : */}
-
-
-
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col >
+                        <Col md={{ span: 4 }}>
                             <Comments comments={storyDetails.comments} storyId={storyId}></Comments>
                         </Col>
 
-
                     </ Row > :
-                    <h1>Loading...</h1>
+                    <Loader />
             }
 
         </>

@@ -2,12 +2,18 @@ import "./StoryCard.css"
 import storyService from '../../services/story.services'
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import Loader from "../Loader/Loader"
 
 
 const StoryCard = () => {
+
     const [storyList, setStoryList] = useState([])
 
     useEffect(() => {
+        getAllStories()
+    }, [])
+
+    const getAllStories = () => {
         storyService
             .getStoryList()
             .then(({ data }) => {
@@ -15,14 +21,13 @@ const StoryCard = () => {
 
             })
             .catch(err => console.log(err))
-    }, [])
-
+    }
 
 
     return (
         <>
             {!storyList ?
-                <h1>cargando loki</h1>
+                <Loader />
                 :
 
                 storyList.map((u) => {

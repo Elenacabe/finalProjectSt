@@ -32,7 +32,7 @@ const storySchema = new Schema({
         ref: 'Comment'
     }],
 }, {
-    timeStamps: true
+    timestamps: true
 }
 )
 const Story = model("Story", storySchema)

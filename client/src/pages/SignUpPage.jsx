@@ -5,7 +5,7 @@ const SignUpPage = () => {
         <>
             <h1 style={{ textAlign: "center" }}>Regístrate</h1>
 
-            <SignUpForm></SignUpForm>
+            <SignUpForm />
 
         </>
     )

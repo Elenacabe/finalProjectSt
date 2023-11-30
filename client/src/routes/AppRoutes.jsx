@@ -6,23 +6,28 @@ import LogInPage from '../pages/LogInPage'
 import UserListPage from '../pages/UserListPage'
 import UserDetailsPage from '../pages/UserDetailsPage'
 import StoryDetailsPage from '../pages/StoryDetailsPage'
-import MyProfilePage from '../pages/MyProfilePage'
 import CreateStoryPage from '../pages/CreateStoryPage'
+import ProtectedRoutes from './ProtectedRoutes'
 
 const AppRoutes = () => {
 
     return (
         <Routes>
-            <Route path={"/"} element={<HomePage></HomePage>} />
+            <Route path={"/"} element={<HomePage />} />
             <Route path={"/signUp"} element={<SignUpPage />} />
             <Route path={"/logIn"} element={<LogInPage />} />
-            <Route path={"/microrrelatos"} element={<CreateStoryPage />} />
             <Route path={"/usuarios"} element={<UserListPage />} />
-            <Route path={"/usuarios/detalles/:userId"} element={<UserDetailsPage />} />
-            <Route path={"/microrrelatos/detalles/:storyId"} element={<StoryDetailsPage />} />
-            <Route path={"/miPerfil"} element={<UserDetailsPage />} />
-            <Route path={"/logOut"} element={<HomePage />} />
+
+            <Route element={<ProtectedRoutes />}>
+                <Route path={"/usuarios/detalles/:userId"} element={<UserDetailsPage />} />
+                <Route path={"/microrrelatos/detalles/:storyId"} element={<StoryDetailsPage />} />
+                <Route path={"/crearMicrorrelato"} element={<CreateStoryPage />} />
+                <Route path={"/miPerfil"} element={<UserDetailsPage />} />
+            </Route>
+
         </Routes >
+        //ERROR ROUUUUUUUUUUUTE!!!!! CREAR E IMPLEMENTAR
+        //<Route path="*" element={<ErrorPage/>}/>
     )
 }
 export default AppRoutes

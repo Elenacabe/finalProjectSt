@@ -6,6 +6,8 @@ const AuthContext = createContext()
 function AuthProviderWrapper(props) {
 
     const [loggedUser, setLoggedUser] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [isAdmin, setIsAdmin] = useState(null)
 
     const authenticateUser = () => {
 
@@ -17,14 +19,22 @@ function AuthProviderWrapper(props) {
                 .verify(token)
                 .then(({ data }) => {
                     setLoggedUser(data.loggedUser)
+                    if (data.loggedUser.role == 'ADMIN') {
+                        setIsAdmin(true)
+                    }
+                    setIsLoading(false)
+                    ////ISADMIN!?!?!?!?
                 })
-                .catch(err => console.log(err))
+                .catch(err => logOut())
+        } else {
+            logOut()
         }
     }
 
     const logOut = () => {
         localStorage.removeItem('authToken')
         setLoggedUser(null)
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -34,7 +44,7 @@ function AuthProviderWrapper(props) {
 
 
     return (
-        <AuthContext.Provider value={{ loggedUser, authenticateUser, logOut }}>
+        <AuthContext.Provider value={{ loggedUser, authenticateUser, logOut, isLoading, isAdmin }}>
             {props.children}
         </AuthContext.Provider>
     )

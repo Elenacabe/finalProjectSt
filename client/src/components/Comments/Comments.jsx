@@ -5,30 +5,33 @@ import './Comments.css'
 
 
 function Comments({ storyId, comments }) {
+
     const [comment, setComment] = useState('')
     const [newComments, setComments] = useState(comments)
-    const { loggedUser, logOut } = useContext(AuthContext)
+    const { loggedUser } = useContext(AuthContext)
 
     const onClickHandler = () => {
         commentService
-            .createComment({ comment: comment, author: loggedUser._id, storyId })
-            .then(
-                ({ data }) => {
-                    setComments((comments) => [...comments, data])
-                    setComment('')
-                }
-            )
+            .createComment({ comment, author: loggedUser._id, storyId })
+            .then(({ data }) => {
+                setComments((comments) => [data, ...comments])
+                setComment('')
+            })
     }
 
     const onChangeHandler = (e) => {
-        setComment(e.target.value)
+        const { value } = e.target
+        setComment(value)
     }
+
     return (
         <div className="main-container">
             <div className="comments-section">
-                {newComments.map((eachComment) => (
-                    <div className="comment-container">{eachComment.comment} By {eachComment.author}</div>
-                ))}
+                {
+                    newComments.map((eachComment) => (
+                        <div className="comment-container" key={eachComment._id}>{eachComment.comment} By {eachComment.author}</div>
+                    ))
+                }
             </div>
             <div className="comment-flexbox">
                 <h3 className="comment-text orangeFlash">Comentario</h3>

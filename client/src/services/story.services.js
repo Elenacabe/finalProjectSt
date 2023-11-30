@@ -21,6 +21,10 @@ class StoryService {
         return this.api.get(`/details/${_id}`)
     }
 
+    deleteStory(_id) {
+        return this.api.delete(`/deleteStory/${_id}`)
+    }
+
 }
 
 

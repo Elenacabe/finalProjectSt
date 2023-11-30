@@ -10,7 +10,8 @@ Base URL `/api/auth`
 ______________________________________________________
 
 
-PROFILE ROUTES use /profile
+PROFILE ROUTES 
+Base URL `api/profile`
 
 | HTTP Method   | URI path       | Description           |
 |---------------|----------------|-----------------------|
@@ -19,7 +20,8 @@ PROFILE ROUTES use /profile
 | DELETE        | `/delete:/_id` | Edit matching ID user |
 _____________________________________________________
 
-STORIES ROUTES use /stories
+STORIES ROUTES 
+Base URL `api/stories`
 
 | HTTP Method | URI path            | Description                           |
 |-------------|---------------------|---------------------------------------|

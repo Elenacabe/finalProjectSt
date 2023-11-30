@@ -1,25 +1,29 @@
 import profileService from "../../services/profile.services"
 import UserCard from "../UserCard/UserCard"
-import { Row, Spinner } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import { useState, useEffect } from "react"
-
+import Loader from "../Loader/Loader"
 
 const UserList = () => {
+
     const [userList, setUserList] = useState([])
+
     useEffect(() => {
+        getAllUsers()
+    }, [])
+
+    const getAllUsers = () => {
         profileService
             .getList()
             .then(({ data }) => {
                 setUserList(data)
-
             })
             .catch(err => console.log(err))
-    }, [])
+    }
+
     return (
         !userList ?
-            <Spinner animation="border" role="status">
-                <span className="sr-only"></span>
-            </Spinner>
+            <Loader />
             :
             <>
                 <Row className="justify-content-md-center">

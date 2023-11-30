@@ -11,7 +11,11 @@ const commentSchema = new Schema({
         required: true
 
     }
-})
+},
+    {
+        timestamps: true
+    }
+)
 
 const Comment = model("Comment", commentSchema)
 
