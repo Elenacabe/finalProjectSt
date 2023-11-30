@@ -23,7 +23,6 @@ function AuthProviderWrapper(props) {
                         setIsAdmin(true)
                     }
                     setIsLoading(false)
-                    ////ISADMIN!?!?!?!?
                 })
                 .catch(err => logOut())
         } else {

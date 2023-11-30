@@ -6,8 +6,9 @@ import { AuthContext } from '../contexts/auth.context';
 
 
 const Navigation = () => {
-    const { loggedUser, logOut } = useContext(AuthContext)
+    const { loggedUser, logOut, isAdmin } = useContext(AuthContext)
     console.log('SOY EL USERRRRRRRRR----------->', { loggedUser })//ATENCION BORRAR
+    console.log('FUNCIOOOOOONE?', isAdmin)
     const handleLogOut = () => {
         logOut()
     }

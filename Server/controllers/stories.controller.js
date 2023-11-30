@@ -22,7 +22,7 @@ const getStoryDetails = (req, res, next) => {
     const { storyId } = req.params
     Story
         .findById(storyId)
-        .populate('writer', 'username')
+        .populate('writer')
         .populate('comments')
         .then((story) => {
             if (!story) {
