@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { newStory, getAllStories, getStoryDetails, deleteStory } = require('../controllers/stories.controller')
+const { newStory, getAllStories, getStoryDetails, deleteStory, valorateStory, showValoration } = require('../controllers/stories.controller')
 
 router.post('/newStory', newStory)
 
@@ -24,7 +24,10 @@ router.get('/details/:storyId', getStoryDetails)
 //         .catch((err) => next(err))
 // })
 
+router.put('/valorate/:story_id', valorateStory)
 
-router.delete('/deleteStory/:story_id', deleteStory)
+router.get('/showValoration/:story_id', showValoration)
+
+router.post('/deleteStory/:story_id', deleteStory)
 
 module.exports = router

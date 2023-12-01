@@ -21,7 +21,7 @@ function AuthProviderWrapper(props) {
                     setLoggedUser(data.loggedUser)
                     if (data.loggedUser.role == 'ADMIN') {
                         setIsAdmin(true)
-                    }
+                    } else { setIsAdmin(false) }
                     setIsLoading(false)
                 })
                 .catch(err => logOut())

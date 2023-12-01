@@ -11,11 +11,10 @@ router.get('/getDetailsProfile/:_id', getDetailsProfile)
 
 router.get('/edit/:_id', editProfile)
 
-
-
 router.put('/edit/:_id', editProfileHandler)
 
-
 router.post('/delete/:_id', deleteProfile)
+
+
 
 module.exports = router

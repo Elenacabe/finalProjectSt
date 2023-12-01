@@ -22,7 +22,15 @@ class StoryService {
     }
 
     deleteStory(_id) {
-        return this.api.delete(`/deleteStory/${_id}`)
+        return this.api.post(`/deleteStory/${_id}`)
+    }
+
+    createValoration(_id, vote, user_id) {
+        return this.api.put(`/valorate/${_id}`, { vote, user_id })
+    }
+
+    showValoration(_id) {
+        return this.api.get(`/showValoration/${_id}`)
     }
 
 }

@@ -10,6 +10,10 @@ const commentSchema = new Schema({
         type: String,
         required: true
 
+    },
+    storyId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Story'
     }
 },
     {

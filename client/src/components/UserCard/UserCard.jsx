@@ -9,7 +9,7 @@ import './UserCard.css'
 
 const UserCard = ({ username, avatar, about, _id }) => {
 
-    const { loggedUser, logOut } = useContext(AuthContext)
+    const { loggedUser, isAdmin } = useContext(AuthContext)
     const navigate = useNavigate()
     const { authenticateUser } = useContext(AuthContext)
 
@@ -18,7 +18,7 @@ const UserCard = ({ username, avatar, about, _id }) => {
         profileService
             .deleteUser(_id)
             .then(() => {
-                if (loggedUser.role === "ADMIN" && loggedUser._id !== _id) {
+                if (isAdmin && loggedUser._id !== _id) {
                     console.log("soy admin y no soy ese")
                     navigate('/')
                 } else {
@@ -43,8 +43,8 @@ const UserCard = ({ username, avatar, about, _id }) => {
                     <Card.Subtitle className="mb-2 text-muted">
                         <Link to={`/usuarios/detalles/${_id}`} className="btn btn-outline-success mr-2">Detalles</Link>
                         {
-                            loggedUser.role == 'ADMIN' || loggedUser._id == _id
-                            && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>//hacer form
+                            isAdmin && { _id } != loggedUser._id || loggedUser._id == _id
+                            && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>
 
                         }
                     </Card.Subtitle>

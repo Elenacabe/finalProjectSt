@@ -1,3 +1,4 @@
+
 const { Schema, model } = require("mongoose")
 const storySchema = new Schema({
     writer: {
@@ -22,10 +23,12 @@ const storySchema = new Schema({
         type: String,
         default: "https://shorturl.at/kowxI"
     },
-    valoration: {
-        type: Number,
-        default: 0
-    },
+    valoration:
+        [{
+            userId: { type: Schema.Types.ObjectId, ref: 'User' },
+            vote: { type: Number, enum: [0, 1, 2, 3, 4, 5] }
+        }]
+    ,
 
     comments: [{
         type: Schema.Types.ObjectId,
@@ -35,6 +38,26 @@ const storySchema = new Schema({
     timestamps: true
 }
 )
+
+// storySchema.pre('post', { document: true }, async function (next) {
+//     try {
+//         const Comment = require('../models/Comment.model');
+
+//         await this.populate('comments').execPopulate();
+
+//         const commentIds = this.comments.map(comment => comment._id);
+
+//         if (commentIds.length > 0) {
+
+//             await Comment.deleteMany({ _id: { $in: commentIds } });
+//         }
+
+//         next();
+//     } catch (error) {
+//         next(error);
+//     }
+// })
+
 const Story = model("Story", storySchema)
 
 module.exports = Story

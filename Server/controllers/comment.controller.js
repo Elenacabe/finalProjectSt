@@ -6,7 +6,7 @@ const newComment = (req, res, next) => {
     const { author, comment, storyId } = req.body
     // TODO: REVISAR
     Comment
-        .create({ author, comment })
+        .create({ author, comment, storyId })
         .then((newComment) => {
             Story
                 .findById(storyId)
