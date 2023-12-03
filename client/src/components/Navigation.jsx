@@ -55,7 +55,7 @@ const Navigation = () => {
                                             <Link to={`/usuarios/detalles/${loggedUser._id}`}>Perfil</Link>
                                         </NavDropdown.Item>
                                         <NavDropdown.Item>
-                                            <Link to="/profile/Microrrelatos">Mis Microrrelatos</Link>
+                                            <Link to={`/misMicrorrelatos/${loggedUser._id}`}>Mis micros</Link>
                                         </NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item onClick={handleLogOut}>

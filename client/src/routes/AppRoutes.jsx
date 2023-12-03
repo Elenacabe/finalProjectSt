@@ -8,6 +8,8 @@ import UserDetailsPage from '../pages/UserDetailsPage'
 import StoryDetailsPage from '../pages/StoryDetailsPage'
 import CreateStoryPage from '../pages/CreateStoryPage'
 import ProtectedRoutes from './ProtectedRoutes'
+import MyStoriesPage from '../pages/MyStoriesPage'
+
 
 const AppRoutes = () => {
 
@@ -23,6 +25,7 @@ const AppRoutes = () => {
                 <Route path={"/microrrelatos/detalles/:storyId"} element={<StoryDetailsPage />} />
                 <Route path={"/crearMicrorrelato"} element={<CreateStoryPage />} />
                 <Route path={"/miPerfil"} element={<UserDetailsPage />} />
+                <Route path={"/misMicrorrelatos/:userId"} element={<MyStoriesPage />} />
             </Route>
 
         </Routes >

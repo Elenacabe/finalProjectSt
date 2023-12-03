@@ -13,7 +13,6 @@ class ProfileService {
         return this.api.get('/getAll')
     }
 
-
     getDetails(_id) {
         return this.api.get(`/getDetailsProfile/${_id}`)
     }

@@ -2,10 +2,11 @@ import storyService from "../../services/story.services"
 import { useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 import { useContext } from "react"
+import "./Valoration.css"
 import { Card } from "react-bootstrap"
 
 function Valorations({ storyId, valorations }) {
-    const [average, setAverage] = useState(0)
+    const [average, setAverage] = useState(null)
     const [valoration, setValoration] = useState(valorations)
     const [newValoration, setNewValoration] = useState(valorations)
     const { loggedUser } = useContext(AuthContext)
@@ -18,6 +19,7 @@ function Valorations({ storyId, valorations }) {
                     setAverage(data)
                 }
             })
+            .catch((err) => console.log('No hemos podido registrar el voto'))
     }, [newValoration])
     const newValorationHandler = (e) => {
 
@@ -33,9 +35,6 @@ function Valorations({ storyId, valorations }) {
                 setValoration('')
             })
     }
-
-    // const onSubmit = (e) => {
-    //     const { value } = e.target
 
 
     return (
@@ -54,13 +53,13 @@ function Valorations({ storyId, valorations }) {
 
             <Card>
                 <div>
-                    <button value={1} onClick={newValorationHandler}>Votar 1</button>
-                    <button value={2} onClick={newValorationHandler}>Votar 2</button>
-                    <button value={3} onClick={newValorationHandler}>Votar 3</button>
-                    <button value={4} onClick={newValorationHandler}>Votar 4</button>
-                    <button value={5} onClick={newValorationHandler}>Votar 5</button>
+                    <button value={1} className="buttonLike" onClick={newValorationHandler}>😾</button>
+                    <button value={2} onClick={newValorationHandler}>😿</button>
+                    <button value={3} onClick={newValorationHandler}>😼</button>
+                    <button value={4} onClick={newValorationHandler}>😺</button>
+                    <button value={5} onClick={newValorationHandler}>😻</button>
                 </div>
-            </Card>
+            </Card >
         </>
     )
 }
