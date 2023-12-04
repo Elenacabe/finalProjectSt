@@ -50,7 +50,7 @@ const EditProfileForm = () => {
             <Col>
                 <Form className="custom-form" onSubmit={handleFormSubmit}>
                     <h1 className="orangeT"> Edita tu perfil:</h1>
-                    <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="avatar">
+                    <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }}>
                         <Form.Label>Avatar</Form.Label>
                         <input type="file" onChange={handleFileUpload} name="avatar" className="custom-input" />
                     </Form.Group>

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useNavigate, useParams, Link, Navigate } from 'react-router-dom'
 import storyService from "../services/story.services"
 import { Card, ListGroup, Col, Row, Container } from 'react-bootstrap'
 import Comments from "../components/Comments/Comments"
@@ -26,12 +26,12 @@ function StoryDetailsPage() {
             .catch(err => console.log(err))
     }
 
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
     const handleDelete = () => {
         storyService
             .deleteStory(storyDetails._id)
-            .then(() => { navigate('/') })
+            .then(() => navigate('/'))
             .catch(err => console.log(err))
     }
 
@@ -54,7 +54,8 @@ function StoryDetailsPage() {
                                         </Card.Text>
                                     </Card.Body>
                                     <ListGroup className="list-group-flush">
-
+                                        {storyDetails.valoration.length == 1 && <p>{storyDetails.valoration.length} voto</p>}
+                                        {storyDetails.valoration.length > 1 && <p>{storyDetails.valoration.length} votos</p>}
                                         <Valorations valorations={storyDetails.valoration} storyId={storyId} />
 
                                     </ListGroup>

@@ -50,24 +50,18 @@ function Valorations({ storyId, valorations }) {
             </div >
 
 
-            <Card className="buttonsVal">
-                <Row>
-                    <Col>
-                        <button value={1} onClick={newValorationHandler}>😾</button>
-                    </Col>
-                    <Col>
-                        <button value={2} onClick={newValorationHandler}>😿</button>
-                    </Col>
-                    <Col>
-                        <button value={3} onClick={newValorationHandler}>😼</button>
-                    </Col>
-                    <Col>
-                        <button value={4} onClick={newValorationHandler}>😺</button>
-                    </Col >
-                    <Col>
-                        <button value={5} onClick={newValorationHandler}>😻</button>
-                    </Col >
-                </Row>
+            <Card className="valorationGroup">
+
+                <div className="btn-group" role="group" aria-label="Basic example">
+
+                    <button className="buttonVal" value={1} onClick={newValorationHandler}>😾</button>
+                    <button className="buttonVal" value={2} onClick={newValorationHandler}>😿</button>
+                    <button className="buttonVal" value={3} onClick={newValorationHandler}>😼</button>
+                    <button className="buttonVal" value={4} onClick={newValorationHandler}>😺</button>
+                    <button className="buttonVal" value={5} onClick={newValorationHandler}>😻</button>
+
+                </div>
+
             </Card >
         </>
     )

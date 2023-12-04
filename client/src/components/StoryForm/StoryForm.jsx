@@ -8,7 +8,7 @@ import uploadService from "../../services/upload.services"
 
 
 const StoryForm = () => {
-    const { loggedUser, logOut } = useContext(AuthContext)
+    const { loggedUser } = useContext(AuthContext)
 
     const [storyData, setStoryData] = useState({
         writer: loggedUser._id,

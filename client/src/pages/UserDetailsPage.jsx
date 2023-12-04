@@ -34,7 +34,7 @@ function UserDetailsPage() {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" src={userDetails.avatar} />
                                 <Card.Body>
-                                    <Card.Text><h1>{userDetails.username}</h1></Card.Text>
+                                    <Card><h1>{userDetails.username}</h1></Card>
                                     <Card.Text>
                                         {userDetails.about}
                                     </Card.Text>

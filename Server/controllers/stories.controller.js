@@ -56,7 +56,7 @@ const deleteStory = (req, res, next) => {
             } else {
                 Comment
                     .deleteMany({ storyId: story_id })
-                    .then(res.json({ message: 'Historia borrada y ssu comment' }))
+                    .then(res.json({ message: 'Historia borrada y sus commentarios' }))
             }
         })
         .catch((err) => next(err))

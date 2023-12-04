@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import commentService from '../../services/comment.services'
 import { AuthContext } from "../../contexts/auth.context"
 import './Comments.css'
+import { Link } from "react-router-dom"
 
 
 function Comments({ storyId, comments }) {
@@ -29,7 +30,7 @@ function Comments({ storyId, comments }) {
             <div className="comments-section">
                 {
                     newComments.map((eachComment) => (
-                        <div className="comment-container" key={eachComment._id}>{eachComment.comment} By {eachComment.author}</div>
+                        <div className="comment-container" key={eachComment._id}>{eachComment.comment}  <Link to={`/usuarios/detalles/${eachComment.author}`}> ver Autor</Link> </div>
                     ))
                 }
             </div>

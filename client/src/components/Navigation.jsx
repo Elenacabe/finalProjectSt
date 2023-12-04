@@ -1,15 +1,16 @@
 import { useContext, useEffect } from 'react';
 import { Container, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap/'
-import { Link, NavLink, Navigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../contexts/auth.context';
 
 
 
 const Navigation = () => {
     const { loggedUser, logOut, isAdmin } = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleLogOut = () => {
         logOut()
-            .then(Navigate("/"))
+        navigate("/")
     }
 
     return (
@@ -22,7 +23,7 @@ const Navigation = () => {
                 {
                     loggedUser
                         ?
-                        <NavItem>Hola {loggedUser.username.toUpperCase()}</NavItem>
+                        <NavItem>Hola {loggedUser.username}</NavItem>
                         :
                         <></>
                 }

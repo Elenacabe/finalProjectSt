@@ -1,4 +1,6 @@
 const User = require('../models/User.model')
+const Story = require('../models/Story.model')
+const Comment = require('../models/Comment.model')
 
 const getAllUsers = (req, res, next) => {
     User
@@ -50,6 +52,10 @@ const deleteProfile = (req, res, next) => {
     const { _id } = req.params
     User
         .findByIdAndDelete(_id)
+    Story
+        .deleteMany({ writer: _id })
+    Comment
+        .deleteMany({ author: _id })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
