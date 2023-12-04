@@ -12,5 +12,7 @@ module.exports = app => {
   const commentsRoutes = require("./comment.routes")
   app.use("/api/comments", commentsRoutes)
 
+  const uploadRoutes = require("./upload.routes")
+  app.use("/api/upload", uploadRoutes)
 
 }

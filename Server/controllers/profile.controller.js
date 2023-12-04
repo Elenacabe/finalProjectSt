@@ -26,21 +26,18 @@ const editProfile = (req, res, next) => {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' })
             }
-            const { username, avatar, role, following, about } = user
-            res.json({ username, avatar, role, following, about })
+            const { username, avatar, role, about } = user
+            res.json({ username, avatar, role, about })
         })
         .catch((err) => next(err))
 }
 
 const editProfileHandler = (req, res, next) => {
-    const { username, avatar, role, following, about } = req.body
+    const { avatar, about } = req.body
     const { _id } = req.params
     User
         .findByIdAndUpdate({ _id }, {
-            username,
             avatar,
-            role,
-            following,
             about
 
         }, { new: true })

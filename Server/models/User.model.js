@@ -26,8 +26,7 @@ const userSchema = new Schema(
       validate: [validateAge, 'Debes tener al menos 18 años.']
     },
     avatar: {
-      type: String,
-      default: "https://shorturl.at/kowxI"
+      type: String
     },
     about: {
       type: String,

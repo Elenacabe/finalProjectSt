@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react"
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import storyService from "../services/story.services"
-import { Card, ListGroup, Col, Row } from 'react-bootstrap'
+import { Card, ListGroup, Col, Row, Container } from 'react-bootstrap'
 import Comments from "../components/Comments/Comments"
 import Loader from "../components/Loader/Loader"
 import { AuthContext } from "../contexts/auth.context"
@@ -41,40 +41,38 @@ function StoryDetailsPage() {
             {
                 storyDetails
                     ?
-                    <Row>
-                        <Col md={{ span: 6 }}>
-                            <Card className="detailsFlash">
-                                <Card.Img variant="top" src={storyDetails.cover} />
-                                <Card.Body>
-                                    <h1 className="orangeFlash">{storyDetails.title}</h1>
-                                    <Card.Text>
-                                        {storyDetails.story}
+                    <Container>
+                        <Row>
+                            <Col md={{ span: 6 }}>
+                                <Card className="detailsFlash">
+                                    <Card.Img variant="top" src={storyDetails.cover} />
+                                    <Card.Body>
+                                        <h1 className="orangeFlash">{storyDetails.title}</h1>
+                                        <Card.Text>
+                                            {storyDetails.story}
 
-                                    </Card.Text>
-                                </Card.Body>
-                                <ListGroup className="list-group-flush">
-                                    {/* TODO: DESACOPLAR LISTADO DE LIKES */}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <ListGroup className="list-group-flush">
 
-                                    <Valorations valorations={storyDetails.valoration} storyId={storyId} />
+                                        <Valorations valorations={storyDetails.valoration} storyId={storyId} />
 
+                                    </ListGroup>
 
-
-
-                                </ListGroup>
-
-                                <Card.Body>
-                                    {isAdmin || loggedUser._id == storyDetails.writer._id && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>}
-                                    {/* <Link className="orangeFlash" to={`/usuarios/detalles/${storyDetails.writer._id}`}>Conoce a {storyDetails.writer.username}</Link> : */}
-                                </Card.Body>
+                                    <Card.Body>
+                                        {isAdmin || loggedUser._id == storyDetails.writer._id && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>}
+                                        <Link className="orangeFlash" to={`/usuarios/detalles/${storyDetails.writer._id}`}>Conoce a {storyDetails.writer.username}</Link>
+                                    </Card.Body>
 
 
-                            </Card>
-                        </Col>
-                        <Col md={{ span: 4 }}>
-                            <Comments comments={storyDetails.comments} storyId={storyId} />
-                        </Col>
+                                </Card>
+                            </Col>
+                            <Col md={{ span: 4 }}>
+                                <Comments comments={storyDetails.comments} storyId={storyId} />
+                            </Col>
 
-                    </ Row > :
+                        </ Row >
+                    </Container> :
                     <Loader />
             }
 

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Form, Button, Col } from "react-bootstrap"
 // import "./SignUpForm.css"
+import uploadService from "../../services/upload.services"
 import authService from "../../services/auth.services"
 import { useNavigate } from "react-router-dom"
 
@@ -19,6 +20,18 @@ const SignUpForm = () => {
     const handleInputChange = e => {
         const { value, name } = e.target
         setSignupData({ ...signupData, [name]: value })
+    }
+    const handleFileUpload = e => {
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadService
+            .uploadimage(formData)
+            .then(response => {
+                setSignupData({ ...signupData, avatar: response.data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
     }
 
     const navigate = useNavigate()
@@ -46,7 +59,7 @@ const SignUpForm = () => {
             </Form.Group>
             <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="avatar">
                 <Form.Label>Avatar</Form.Label>
-                <input type="file" value={signupData.avatar} onChange={handleInputChange} name="avatar" className="custom-input" />
+                <input type="file" onChange={handleFileUpload} name="avatar" className="custom-input" />
             </Form.Group>
 
             <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="birthDate">
@@ -66,7 +79,7 @@ const SignUpForm = () => {
 
             <div className="d-grid" >
                 <Col md={{ offset: 3, span: 6 }}>
-                    <Button md={{ offset: 3, span: 6 }} variant="dark" type="submit">Registrarme</Button>
+                    <Button md={{ offset: 3, span: 3 }} variant="dark" type="submit">Registrarme</Button>
                 </Col>
             </div>
             {/* <div className="d-grid gap-2">

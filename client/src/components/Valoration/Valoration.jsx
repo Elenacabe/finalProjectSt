@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 import { useContext } from "react"
 import "./Valoration.css"
-import { Card } from "react-bootstrap"
+import { Card, Row, Col } from "react-bootstrap"
 
 function Valorations({ storyId, valorations }) {
     const [average, setAverage] = useState(null)
@@ -30,7 +30,6 @@ function Valorations({ storyId, valorations }) {
         storyService
             .createValoration(storyId, selectedVal, loggedUser._id)
             .then((response) => {
-                console.log("he clickadoooooooooooooooooooooooooooooooooooooooooo", response)
                 setNewValoration(response.data)
                 setValoration('')
             })
@@ -44,21 +43,31 @@ function Valorations({ storyId, valorations }) {
 
                     average !== NaN
                         ?
-                        <p>{average}</p>
+                        <p style={{ textAlign: 'center' }}>{average}</p>
                         :
                         <p>no hay votos</p>
                 }
-            </div>
+            </div >
 
 
-            <Card>
-                <div>
-                    <button value={1} className="buttonLike" onClick={newValorationHandler}>😾</button>
-                    <button value={2} onClick={newValorationHandler}>😿</button>
-                    <button value={3} onClick={newValorationHandler}>😼</button>
-                    <button value={4} onClick={newValorationHandler}>😺</button>
-                    <button value={5} onClick={newValorationHandler}>😻</button>
-                </div>
+            <Card className="buttonsVal">
+                <Row>
+                    <Col>
+                        <button value={1} onClick={newValorationHandler}>😾</button>
+                    </Col>
+                    <Col>
+                        <button value={2} onClick={newValorationHandler}>😿</button>
+                    </Col>
+                    <Col>
+                        <button value={3} onClick={newValorationHandler}>😼</button>
+                    </Col>
+                    <Col>
+                        <button value={4} onClick={newValorationHandler}>😺</button>
+                    </Col >
+                    <Col>
+                        <button value={5} onClick={newValorationHandler}>😻</button>
+                    </Col >
+                </Row>
             </Card >
         </>
     )

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import Loader from "../Loader/Loader"
 import { AuthContext } from '../../contexts/auth.context'
 import { useContext } from 'react'
+import { Col, Row } from 'react-bootstrap'
 
 
 const MyStoriesCard = () => {
@@ -28,28 +29,24 @@ const MyStoriesCard = () => {
 
 
     return (
-        <>
+        <Row>
             {!myStoryList ?
                 <Loader />
                 :
 
                 myStoryList.map((u) => {
                     return (
-                        <div className="eachElement">
-                            <div className='storyCard' key={u._id}>
+                        <Col className="eachElement" key={u._id}>
+                            <div className='storyCard'>
                                 <h1 className="textColor">{u.title}</h1>
-                                <p>{u.story}</p>
+                                <p>{u.story.slice(0, 30)}...</p>
                                 <Link className="textColor" to={`/microrrelatos/detalles/${u._id}`}>Detalles</Link>
-                                <form action=""></form>
                             </div>
-                        </div>)
-
-
-
+                        </Col>)
                 })
 
             }
-        </>
+        </Row>
     )
 }
 export default MyStoriesCard

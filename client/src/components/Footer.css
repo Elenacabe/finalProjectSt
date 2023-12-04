@@ -3,7 +3,9 @@
     height: 30px;
     width: 100%;
     justify-content: center;
-    background-color: #3c9be4;
-    line-height: 1.3;
+    background-color: gray;
+    line-height: 1.6;
     font-family: Menlo, monospace;
+    position: fixed;
+    bottom: 0;
 }

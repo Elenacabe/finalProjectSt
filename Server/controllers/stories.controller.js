@@ -19,6 +19,17 @@ const getAllStories = (req, res, next) => {
         .catch((err) => next(err))
 }
 
+const getAllMyStories = (req, res, next) => {
+    const { userId: writer } = req.params
+    Story
+        .find({ writer })
+        .sort({ createdAt: -1 })
+        .then((foundStories) => {
+            res.json(foundStories)
+        })
+        .catch((err) => next(err))
+}
+
 const getStoryDetails = (req, res, next) => {
     const { storyId } = req.params
     Story
@@ -60,13 +71,18 @@ const valorateStory = (req, res, next) => {
     Story
         .findByIdAndUpdate(story_id)
         .then(foundStory => {
-            foundStory.valoration.push(valor)
-            return foundStory.save()
-                .then((historia) => {
-                    const sum = historia.valoration.reduce((acc, currentValue) => acc + currentValue.vote, 0)
-                    res.json(sum)
-                })
+            if (foundStory.valoration.some(value => value.userId == user_id)) {
+                console.log('ya has votado')
+            } else {
+                foundStory.valoration.push(valor)
+                return foundStory.save()
+                    .then((historia) => {
+                        const sum = historia.valoration.reduce((acc, currentValue) => acc + currentValue.vote, 0)
+                        res.json(sum)
+                    })
+            }
         })
+
         .catch((err) => next(err))
 
 }
@@ -88,6 +104,7 @@ module.exports =
 {
     newStory,
     getAllStories,
+    getAllMyStories,
     getStoryDetails,
     deleteStory,
     valorateStory,

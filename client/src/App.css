@@ -1,15 +1,21 @@
-.orangeFlash {
-    color: orange;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    text-decoration: underline;
+.ownRow {
+    margin-top: 40px;
+    align-items: center;
 }
 
-.detailsFlash {
-    display: inline-block;
+.ownCol {
+    margin-top: 60px;
+    padding: 10px;
     text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin: auto
+    margin-bottom: 40px;
+}
+
+.ownCol h1 {
+    color: orange;
+    font-size: 40px;
+}
+
+.orangeT {
+    color: orange;
+    text-decoration: none;
 }

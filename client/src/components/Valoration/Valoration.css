@@ -2,3 +2,9 @@
     cursor: pointer;
     margin: 2px
 }
+
+.buttonsVal {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}

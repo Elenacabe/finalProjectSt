@@ -17,8 +17,8 @@ class ProfileService {
         return this.api.get(`/getDetailsProfile/${_id}`)
     }
 
-    editUser(userId) {
-        return this.api.post('/edit', userId)
+    editUser(_id, editProfileData) {
+        return this.api.put(`/edit/${_id}`, editProfileData)
     }
     deleteUser(_id) {
         return this.api.post(`/delete/${_id}`)

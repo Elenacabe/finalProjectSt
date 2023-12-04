@@ -7,27 +7,16 @@ import { AuthContext } from '../contexts/auth.context';
 
 const Navigation = () => {
     const { loggedUser, logOut, isAdmin } = useContext(AuthContext)
-    console.log('SOY EL USERRRRRRRRR----------->', { loggedUser })//ATENCION BORRAR
-    console.log('FUNCIOOOOOONE?', isAdmin)
     const handleLogOut = () => {
         logOut()
+            .then(Navigate("/"))
     }
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
                 <Navbar.Brand >
-                    {
-                        loggedUser
-                            ?
-                            <>
-                                <NavItem><img src={loggedUser.avatar} alt="Avatar" className='userAvatar' ></img></NavItem>
-                                <Link to="/" className="nav-item nav-link">LongStoryShort</Link>
-                            </>
-                            :
-                            <Link to="/" className="nav-item nav-link">LongStoryShort</Link>
-
-                    }
+                    <Link to="/" className="nav-item nav-link">LongStoryShort</Link>
                 </Navbar.Brand>
 
                 {
@@ -71,6 +60,7 @@ const Navigation = () => {
                     </Nav>
                 </Navbar.Collapse>
             </Container>
+            {loggedUser && <NavItem> <Link to={`/usuarios/detalles/${loggedUser._id}`}><img src={loggedUser.avatar} alt="Avatar" className='userAvatar' ></img></Link></NavItem>}
         </Navbar >
     )
 
