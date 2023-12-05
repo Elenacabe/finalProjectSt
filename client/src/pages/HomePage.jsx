@@ -6,7 +6,7 @@ const HomePage = () => {
     return (
 
         <Container>
-            <h2 className="orangeT">Lee los microrrelatos:</h2>
+            <h2 className="orangeT" style={{ fontSize: '2.5 em', textDecoration: 'underline' }}>Microrrelatos:</h2>
             <StoryCard />
         </Container>
 

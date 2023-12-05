@@ -60,3 +60,15 @@
     margin: 10px 5px;
     word-break: break-all;
 }
+
+.commentContainer {
+    max-height: 40px;
+    width: 455px;
+    text-align: right;
+    overflow-y: auto;
+    color: black;
+    background-color: #9fc4e9;
+    border-radius: 5px;
+    margin: 10px 5px;
+    word-break: break-all;
+}

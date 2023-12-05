@@ -29,10 +29,15 @@ function Comments({ storyId, comments }) {
         <div className="main-container">
             <div className="comments-section">
                 {
-                    newComments.map((eachComment) => (
-                        <div className="comment-container" key={eachComment._id}>{eachComment.comment}
-                            <Link to={`/usuarios/detalles/${eachComment.author}`}> ver </Link>
-                        </div>
+                    newComments.map((eachComment, index) => (
+                        index % 2 ?
+                            <div className="comment-container" key={eachComment._id}>{eachComment.comment}
+                                <Link to={`/usuarios/detalles/${eachComment.author}`}> ver </Link>
+                            </div>
+                            :
+                            <div className="commentContainer" key={eachComment._id}>{eachComment.comment}
+                                <Link to={`/usuarios/detalles/${eachComment.author}`}> ver </Link>
+                            </div>
                     ))
                 }
             </div>
