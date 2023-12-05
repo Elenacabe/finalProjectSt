@@ -47,7 +47,7 @@ const SignUpForm = () => {
 
 
     return (
-        <Form className="custom-form" onSubmit={handleFormSubmit}>
+        <Form style={{ marginLeft: '120px' }} onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }} controlId="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" value={signupData.email} onChange={handleInputChange} name="email" className="custom-input" />

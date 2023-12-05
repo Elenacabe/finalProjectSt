@@ -1,4 +1,4 @@
-import "./StoryCard.css"
+import './StoryCard.css'
 import storyService from '../../services/story.services'
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
@@ -31,21 +31,19 @@ const StoryCard = () => {
                 <Loader />
                 :
 
-                storyList.map((u) => {
+                storyList.map((stories) => {
                     return (
-                        <Col style={{ margin: '30px' }} className="eachElement " key={u._id}>
-                            <div className='storyCard' >
-                                <h1 className="textColor">{u.title}</h1>
-                                <p>{u.story.slice(0, 40)}...</p>
-                                <Link className="textColor" to={`/microrrelatos/detalles/${u._id}`}>Detalles</Link>
-                                <form action=""></form>
+                        <Col md={{ span: 3, offset: 1 }} key={stories._id}>
+                            <div className='storyCard'>
+                                <h1 className="textColor">{stories.title}</h1>
+                                <p>{stories.story.slice(0, 65)}...</p>
+                                <Link className="textColor" to={`/microrrelatos/detalles/${stories._id}`}>Detalles</Link>
                             </div>
-                        </Col>)
+                        </Col>
+                    )
                 })
-
             }
         </Row>
-
     )
 }
 export default StoryCard
