@@ -30,7 +30,9 @@ function Comments({ storyId, comments }) {
             <div className="comments-section">
                 {
                     newComments.map((eachComment) => (
-                        <div className="comment-container" key={eachComment._id}>{eachComment.comment}  <Link to={`/usuarios/detalles/${eachComment.author}`}> ver Autor</Link> </div>
+                        <div className="comment-container" key={eachComment._id}>{eachComment.comment}
+                            <Link to={`/usuarios/detalles/${eachComment.author}`}> ver </Link>
+                        </div>
                     ))
                 }
             </div>

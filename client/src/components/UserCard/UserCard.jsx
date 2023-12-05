@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap"
+import { Card, Col } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../contexts/auth.context"
 import { useContext, useEffect } from "react"
@@ -33,22 +33,24 @@ const UserCard = ({ username, avatar, about, _id }) => {
 
     return (
         <>
-            <div style={{ width: '18rem', margin: '20px' }} className=" eachElement">
-                <Card.Img variant="top" src={avatar} />
-                <Card.Body className="userCard">
-                    <h1 className="textColor">{username}</h1>
-                    <Card.Text>
-                        {about}
-                    </Card.Text>
-                    <Card.Subtitle className="mb-2 text-muted">
-                        <Link to={`/usuarios/detalles/${_id}`} className="btn btn-outline-success mr-2">Detalles</Link>
-                        {
-                            isAdmin && { _id } != loggedUser._id || loggedUser._id == _id
-                            && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>
+            <div style={{ width: '18rem', margin: '20px' }} className=" eachElemento">
+                <Col>
+                    <Card.Img variant="top" src={avatar} />
+                    <Card.Body className="userCard">
+                        <h1 className="textColor">{username}</h1>
+                        <Card.Text>
+                            {about}
+                        </Card.Text>
+                        <Card.Subtitle className="mb-2 text-muted">
+                            <Link to={`/usuarios/detalles/${_id}`} className="btn btn-outline-success mr-2">Detalles</Link>
+                            {
+                                isAdmin && { _id } != loggedUser._id || loggedUser._id == _id
+                                && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>
 
-                        }
-                    </Card.Subtitle>
-                </Card.Body>
+                            }
+                        </Card.Subtitle>
+                    </Card.Body>
+                </Col>
             </div >
         </>)
 }

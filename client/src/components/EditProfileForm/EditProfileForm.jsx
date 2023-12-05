@@ -9,7 +9,7 @@ import { AuthContext } from "../../contexts/auth.context"
 
 const EditProfileForm = () => {
 
-    const { loggedUser } = useContext(AuthContext)
+    const { loggedUser, authenticateUser } = useContext(AuthContext)
     const [editProfileData, setEditProfileData] = useState({
         avatar: loggedUser.avatar,
         about: loggedUser.about
@@ -27,7 +27,13 @@ const EditProfileForm = () => {
 
         profileService
             .editUser(loggedUser._id, editProfileData)
-            .then(() => navigate('/usuarios'))
+            .then(({ data }) => {
+                console.log(data)
+
+                localStorage.setItem('authToken', data.authToken)
+                authenticateUser()
+                navigate('/usuarios')
+            })
             .catch(err => console.log(err))
     }
 

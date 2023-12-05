@@ -5,7 +5,9 @@
     justify-content: center;
     text-align: justify;
     color: orange;
+    margin-left: 100px;
     margin-bottom: 40px;
+    margin-right: 50px;
 }
 
 .buttonLike {

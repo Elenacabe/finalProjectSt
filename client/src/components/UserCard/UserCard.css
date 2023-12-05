@@ -1,5 +1,5 @@
-.eachElement {
-    margin: 30px;
+.eachElemento {
+    margin: 15px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -7,6 +7,7 @@
     border-radius: 5px;
     display: block;
     padding: 20px 10px;
+
 }
 
 .textColor {
@@ -22,6 +23,7 @@
     box-shadow: 3px;
     text-align: center;
     padding: 5px;
+    margin-bottom: 40px;
 }
 
 img {

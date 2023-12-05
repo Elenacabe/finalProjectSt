@@ -10,8 +10,13 @@ function Valorations({ storyId, valorations }) {
     const [valoration, setValoration] = useState(valorations)
     const [newValoration, setNewValoration] = useState(valorations)
     const { loggedUser } = useContext(AuthContext)
+    const [length, setLength] = useState(valorations.length)
 
     useEffect(() => {
+        getValoration()
+    }, [newValoration])
+
+    const getValoration = () => {
         storyService
             .showValoration(storyId)
             .then(({ data }) => {
@@ -20,50 +25,43 @@ function Valorations({ storyId, valorations }) {
                 }
             })
             .catch((err) => console.log('No hemos podido registrar el voto'))
-    }, [newValoration])
+    }
+
     const newValorationHandler = (e) => {
 
         e.preventDefault()
         const selectedVal = e.target.value
-        console.log(selectedVal)
 
         storyService
             .createValoration(storyId, selectedVal, loggedUser._id)
             .then((response) => {
                 setNewValoration(response.data)
+                setLength(length + 1)
                 setValoration('')
             })
     }
 
 
     return (
-        <>
-            <div >
-                {
 
-                    average !== NaN
-                        ?
-                        <p style={{ textAlign: 'center' }}>{average}</p>
-                        :
-                        <p>no hay votos</p>
-                }
-            </div >
+        <Card className="valorationGroup">
+            {length == 1 && <p>{length} voto</p>}
+            {length > 1 && <p>{length} votos</p>}
 
+            <p>{average} puntos </p>
 
-            <Card className="valorationGroup">
+            <div className="btn-group" role="group" aria-label="Basic example">
 
-                <div className="btn-group" role="group" aria-label="Basic example">
+                <button className="buttonVal" value={1} onClick={newValorationHandler}>😾</button>
+                <button className="buttonVal" value={2} onClick={newValorationHandler}>😿</button>
+                <button className="buttonVal" value={3} onClick={newValorationHandler}>😼</button>
+                <button className="buttonVal" value={4} onClick={newValorationHandler}>😺</button>
+                <button className="buttonVal" value={5} onClick={newValorationHandler}>😻</button>
 
-                    <button className="buttonVal" value={1} onClick={newValorationHandler}>😾</button>
-                    <button className="buttonVal" value={2} onClick={newValorationHandler}>😿</button>
-                    <button className="buttonVal" value={3} onClick={newValorationHandler}>😼</button>
-                    <button className="buttonVal" value={4} onClick={newValorationHandler}>😺</button>
-                    <button className="buttonVal" value={5} onClick={newValorationHandler}>😻</button>
+            </div>
 
-                </div>
+        </Card >
 
-            </Card >
-        </>
     )
 }
 export default Valorations

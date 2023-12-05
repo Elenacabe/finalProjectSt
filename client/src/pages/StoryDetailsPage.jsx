@@ -54,8 +54,7 @@ function StoryDetailsPage() {
                                         </Card.Text>
                                     </Card.Body>
                                     <ListGroup className="list-group-flush">
-                                        {storyDetails.valoration.length == 1 && <p>{storyDetails.valoration.length} voto</p>}
-                                        {storyDetails.valoration.length > 1 && <p>{storyDetails.valoration.length} votos</p>}
+
                                         <Valorations valorations={storyDetails.valoration} storyId={storyId} />
 
                                     </ListGroup>

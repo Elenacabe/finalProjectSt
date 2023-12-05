@@ -9,6 +9,8 @@ import StoryDetailsPage from '../pages/StoryDetailsPage'
 import CreateStoryPage from '../pages/CreateStoryPage'
 import ProtectedRoutes from './ProtectedRoutes'
 import MyStoriesPage from '../pages/MyStoriesPage'
+import ErrorPage from '../pages/ErrorPage/ErrorPage'
+
 
 
 const AppRoutes = () => {
@@ -19,7 +21,6 @@ const AppRoutes = () => {
             <Route path={"/signUp"} element={<SignUpPage />} />
             <Route path={"/logIn"} element={<LogInPage />} />
             <Route path={"/usuarios"} element={<UserListPage />} />
-
             <Route element={<ProtectedRoutes />}>
                 <Route path={"/usuarios/detalles/:userId"} element={<UserDetailsPage />} />
                 <Route path={"/microrrelatos/detalles/:storyId"} element={<StoryDetailsPage />} />
@@ -27,10 +28,10 @@ const AppRoutes = () => {
                 <Route path={"/miPerfil"} element={<UserDetailsPage />} />
                 <Route path={"/misMicrorrelatos/:userId"} element={<MyStoriesPage />} />
             </Route>
+            <Route path="*" element={<ErrorPage />} />
 
         </Routes >
-        //ERROR ROUUUUUUUUUUUTE!!!!! CREAR E IMPLEMENTAR
-        //<Route path="*" element={<ErrorPage/>}/>
+
     )
 }
 export default AppRoutes

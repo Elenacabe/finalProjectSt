@@ -33,7 +33,7 @@ const StoryCard = () => {
 
                 storyList.map((u) => {
                     return (
-                        <Col className="eachElement " key={u._id}>
+                        <Col style={{ margin: '30px' }} className="eachElement " key={u._id}>
                             <div className='storyCard' >
                                 <h1 className="textColor">{u.title}</h1>
                                 <p>{u.story.slice(0, 40)}...</p>

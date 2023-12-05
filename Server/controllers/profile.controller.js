@@ -1,6 +1,7 @@
 const User = require('../models/User.model')
 const Story = require('../models/Story.model')
 const Comment = require('../models/Comment.model')
+const jwt = require('jsonwebtoken')
 
 const getAllUsers = (req, res, next) => {
     User
@@ -43,19 +44,32 @@ const editProfileHandler = (req, res, next) => {
             about
 
         }, { new: true })
-        .then(updatedUser => res.json(updatedUser))
+        .then(updatedUser => {
+            const payload = { _id, username: updatedUser.username, role: updatedUser.role, avatar: updatedUser.avatar }
+
+            const authToken = jwt.sign(
+                payload,
+                process.env.TOKEN_SECRET,
+                { algorithm: 'HS256', expiresIn: "6h" }
+            )
+            return res.json({ authToken, updatedUser })
+        })
         .catch(err => next(err))
 
 }
 
 const deleteProfile = (req, res, next) => {
+
     const { _id } = req.params
-    User
-        .findByIdAndDelete(_id)
-    Story
-        .deleteMany({ writer: _id })
-    Comment
-        .deleteMany({ author: _id })
+
+    const promises = [
+        User.findByIdAndDelete(_id),
+        Story.deleteMany({ writer: _id }),
+        Comment.deleteMany({ author: _id })
+    ]
+
+    Promise
+        .all(promises)
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
