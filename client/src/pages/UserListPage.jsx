@@ -4,7 +4,7 @@ function UserListPage() {
     return (
         <>
             <h1 className="orangeT">Lista de usuarios:</h1>
-            <UserList></UserList>
+            <UserList />
         </>
 
     )

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { newStory, getAllStories, getStoryDetails, mostInteractedStories, getAllMyStories, deleteStory, valorateStory, showValoration } = require('../controllers/stories.controller')
+const { newStory, getAllStories, getStoryDetails, mostInteractedStories, getAllMyStories, deleteStory, valorateStory, showValoration, betterRatedStories } = require('../controllers/stories.controller')
 
 router.post('/newStory', newStory)
 
@@ -9,6 +9,8 @@ router.get('/getAllStories', getAllStories)
 router.get('/allMyStories/:userId', getAllMyStories)
 
 router.get('/getInteractedStories', mostInteractedStories)
+
+router.get('/getBetterRatedStories', betterRatedStories)
 
 router.get('/details/:storyId', getStoryDetails)
 

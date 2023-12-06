@@ -1,5 +1,6 @@
 const Story = require('../models/Story.model')
 const Comment = require('../models/Comment.model')
+const setAverage = require('../utils/setAverage')
 
 const newStory = (req, res, next) => {
     const { writer, title, story, cover } = req.body
@@ -32,12 +33,24 @@ const getAllMyStories = (req, res, next) => {
 const mostInteractedStories = (req, res, next) => {
     Story
         .find()
-        .populate('writer comments')
+        .populate('writer comments')//SACAR UTILS
         .then((mostInteracted) => {
             mostInteracted.sort((a, b) => {
                 return (b.valoration.length + b.comments.length) - (a.valoration.length + a.comments.length)
             })
             res.json(mostInteracted)
+        })
+        .catch((err) => next(err))
+}
+const betterRatedStories = (req, res, next) => {
+    Story
+        .find()
+        .then((betterRated) => {
+            betterRated.sort((a, b) => {
+                return (setAverage(b) - setAverage(a))
+            })
+            res.json(betterRated)
+
         })
         .catch((err) => next(err))
 }
@@ -91,8 +104,7 @@ const valorateStory = (req, res, next) => {
             }
         })
         .then((historia) => {
-            const sum = historia.valoration.reduce((acc, currentValue) => acc + currentValue.vote, 0)
-            res.json(sum)
+            res.json(setAverage(historia))
         })
         .catch((err) => next(err))
 }
@@ -105,8 +117,7 @@ const showValoration = (req, res, next) => {
     Story
         .findById(story_id)
         .then(foundStory => {
-            const sum = foundStory.valoration.reduce((acc, currentValue) => acc + currentValue.vote, 0)
-            const avg = sum / foundStory.valoration.length
+            const avg = setAverage(foundStory)
             res.json(avg.toFixed(2))
         })
         .catch((err) => next(err))
@@ -119,6 +130,7 @@ module.exports =
     getAllStories,
     getAllMyStories,
     mostInteractedStories,
+    betterRatedStories,
     getStoryDetails,
     deleteStory,
     valorateStory,

@@ -10,6 +10,7 @@ import CreateStoryPage from '../pages/CreateStoryPage'
 import ProtectedRoutes from './ProtectedRoutes'
 import MyStoriesPage from '../pages/MyStoriesPage'
 import ErrorPage from '../pages/ErrorPage/ErrorPage'
+import RankingPage from '../pages/RankingPage'
 
 
 
@@ -18,6 +19,7 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path={"/"} element={<HomePage />} />
+            <Route path={'/microsRanking'} element={<RankingPage />} />
             <Route path={"/signUp"} element={<SignUpPage />} />
             <Route path={"/logIn"} element={<LogInPage />} />
             <Route path={"/usuarios"} element={<UserListPage />} />

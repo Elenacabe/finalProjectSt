@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap"
 import StoryCard from "../components/StoryCard/StoryCard"
 
 const HomePage = () => {
-    //DEFAULT:OLDESTTTTTTTTTT----->FILTRO NEWEST Y RANKING?????
+
     return (
 
         <Container>
