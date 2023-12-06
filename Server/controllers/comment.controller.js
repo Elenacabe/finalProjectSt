@@ -39,17 +39,17 @@ const editComment = (req, res, next) => {
 }
 
 const deleteComment = (req, res, next) => {
-    const { comment_id } = req.params
-    const { comment } = req.body
 
-    Comment
-        .findByIdAndUpdate(comment_id, { comment }, { new: true })
-        .then((updatedComment) => {
-            if (!updatedComment) {
-                return res.status(404).json({ error: 'Comentario no encontrado' })
-            }
-            res.json(updatedComment)
-        })
+    const { _id: commentId } = req.params
+    const { storyId } = req.params
+
+    const promises = [
+        Story.findByIdAndUpdate(storyId, { $pull: { comments: commentId } }, { new: true }),
+        Comment.findByIdAndDelete(commentId)
+    ]
+    Promise
+        .all(promises)
+        .then(() => res.sendStatus(200))
         .catch((err) => next(err))
 }
 

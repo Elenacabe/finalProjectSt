@@ -9,6 +9,11 @@ class CommentService {
     createComment(comment) {
         return this.api.post('/newComment', comment)
     }
+
+    deleteComment(_id, storyId) {
+        console.log("-------------", storyId)
+        return this.api.put(`/deleteComment/${_id}`, { storyId })
+    }
 }
 const commentService = new CommentService()
 export default commentService

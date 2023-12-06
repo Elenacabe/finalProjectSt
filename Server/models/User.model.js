@@ -38,12 +38,6 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
-    following: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    ],
     password: {
       type: String,
       required: [true, 'La contraseña es requerida']

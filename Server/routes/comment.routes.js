@@ -7,6 +7,6 @@ router.post('/newComment', newComment)
 
 router.put('/editComment/:comment_id', editComment)
 
-router.delete('/deleteComment/:comment_id', deleteComment)
+router.put('/deleteComment/:_id', deleteComment)
 
 module.exports = router

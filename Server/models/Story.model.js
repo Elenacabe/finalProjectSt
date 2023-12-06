@@ -5,10 +5,6 @@ const storySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    likes: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
     title: {
         type: String,
         required: true
@@ -39,24 +35,7 @@ const storySchema = new Schema({
 }
 )
 
-// storySchema.pre('post', { document: true }, async function (next) {
-//     try {
-//         const Comment = require('../models/Comment.model');
 
-//         await this.populate('comments').execPopulate();
-
-//         const commentIds = this.comments.map(comment => comment._id);
-
-//         if (commentIds.length > 0) {
-
-//             await Comment.deleteMany({ _id: { $in: commentIds } });
-//         }
-
-//         next();
-//     } catch (error) {
-//         next(error);
-//     }
-// })
 
 const Story = model("Story", storySchema)
 

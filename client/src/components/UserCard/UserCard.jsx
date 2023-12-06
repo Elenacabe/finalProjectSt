@@ -19,7 +19,6 @@ const UserCard = ({ username, avatar, about, _id }) => {
             .deleteUser(_id)
             .then(() => {
                 if (isAdmin && loggedUser._id !== _id) {
-                    console.log("soy admin y no soy ese")
                     navigate('/')
                 } else {
                     navigate('/')

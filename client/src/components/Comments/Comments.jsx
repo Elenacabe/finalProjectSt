@@ -9,7 +9,7 @@ function Comments({ storyId, comments }) {
 
     const [comment, setComment] = useState('')
     const [newComments, setComments] = useState(comments)
-    const { loggedUser } = useContext(AuthContext)
+    const { loggedUser, isAdmin } = useContext(AuthContext)
 
     const onClickHandler = () => {
         commentService
@@ -17,6 +17,16 @@ function Comments({ storyId, comments }) {
             .then(({ data }) => {
                 setComments((comments) => [data, ...comments])
                 setComment('')
+            })
+    }
+    const handleDelete = (_id) => {
+
+        console.log('El id-----------', _id)
+
+        commentService
+            .deleteComment(_id, storyId)
+            .then(() => {
+                setComments(comments => (comments.filter((e) => e._id != _id)))
             })
     }
 
@@ -32,11 +42,17 @@ function Comments({ storyId, comments }) {
                     newComments.map((eachComment, index) => (
                         index % 2 ?
                             <div className="comment-container" key={eachComment._id}>{eachComment.comment}
-                                <Link to={`/usuarios/detalles/${eachComment.author}`}> ver </Link>
+                                <Link className="profile-button" to={`/usuarios/detalles/${eachComment.author}`}>Ver perfil</Link>
+                                {isAdmin && <button onClick={() => handleDelete(eachComment._id)} className="delete-button">
+                                    Borrar
+                                </button>}
                             </div>
                             :
                             <div className="commentContainer" key={eachComment._id}>{eachComment.comment}
-                                <Link to={`/usuarios/detalles/${eachComment.author}`}> ver </Link>
+                                <Link className="profile-button" to={`/usuarios/detalles/${eachComment.author}`}> Ver perfil </Link>
+                                {isAdmin && <button onClick={() => handleDelete(eachComment._id)} className="delete-button">
+                                    Borrar
+                                </button>}
                             </div>
                     ))
                 }

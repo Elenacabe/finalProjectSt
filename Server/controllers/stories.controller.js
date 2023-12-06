@@ -45,6 +45,7 @@ const mostInteractedStories = (req, res, next) => {
 const betterRatedStories = (req, res, next) => {
     Story
         .find()
+        .populate('writer comments')
         .then((betterRated) => {
             betterRated.sort((a, b) => {
                 return (setAverage(b) - setAverage(a))
@@ -117,8 +118,12 @@ const showValoration = (req, res, next) => {
     Story
         .findById(story_id)
         .then(foundStory => {
-            const avg = setAverage(foundStory)
-            res.json(avg.toFixed(2))
+            const sum = setAverage(foundStory)
+            const length = foundStory.valoration.length
+            const avg = (sum / length).toFixed(2)
+
+            return res.json(avg)
+
         })
         .catch((err) => next(err))
 

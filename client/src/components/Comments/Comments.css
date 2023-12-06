@@ -8,6 +8,28 @@
 
 }
 
+.profile-button {
+    height: 30px;
+    width: 80px;
+    background-color: orange;
+    color: white;
+    font-size: 1.05rem;
+    border-radius: 15px !important;
+    border: 1px solid white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.delete-button {
+
+    height: 30px;
+    width: 80px;
+    background-color: rgb(255, 72, 0);
+    color: white;
+    font-size: 1.05rem;
+    border-radius: 5px;
+    border: 1px solid white
+}
 
 .comment-flexbox {
     display: flex;
