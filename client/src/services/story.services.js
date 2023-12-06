@@ -17,6 +17,10 @@ class StoryService {
         return this.api.get('/getAllStories')
     }
 
+    getMostInteractedStories() {
+        return this.api.get('getInteractedStories')
+    }
+
     getAllMyStories(userId) {
         return this.api.get(`/allMyStories/${userId}`)
     }

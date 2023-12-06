@@ -29,6 +29,19 @@ const getAllMyStories = (req, res, next) => {
         .catch((err) => next(err))
 }
 
+const mostInteractedStories = (req, res, next) => {
+    Story
+        .find()
+        .populate('writer comments')
+        .then((mostInteracted) => {
+            mostInteracted.sort((a, b) => {
+                return (b.valoration.length + b.comments.length) - (a.valoration.length + a.comments.length)
+            })
+            res.json(mostInteracted)
+        })
+        .catch((err) => next(err))
+}
+
 const getStoryDetails = (req, res, next) => {
     const { storyId } = req.params
     Story
@@ -105,6 +118,7 @@ module.exports =
     newStory,
     getAllStories,
     getAllMyStories,
+    mostInteractedStories,
     getStoryDetails,
     deleteStory,
     valorateStory,
