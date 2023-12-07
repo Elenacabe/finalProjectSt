@@ -7,7 +7,6 @@ const StoriesWritten = ({ _id }) => {
     const [stories, setStories] = useState([]);
 
     useEffect(() => {
-        // Use an effect to fetch data when the component mounts
         storyService
             .getAllMyStories(_id)
             .then(response => {

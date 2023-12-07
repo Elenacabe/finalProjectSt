@@ -39,12 +39,15 @@ const editComment = (req, res, next) => {
 
 const deleteComment = (req, res, next) => {
 
-    const { _id: commentId } = req.params
-    const { storyId } = req.params
+    const { _id } = req.params
+    const { storyId } = req.body
+
+    console.log(_id, storyId)
 
     const promises = [
-        Story.findByIdAndUpdate(storyId, { $pull: { comments: commentId } }, { new: true }),
-        Comment.findByIdAndDelete(commentId)
+        Story.findByIdAndUpdate(storyId,
+            { $pull: { comments: _id } }, { new: true }),
+        Comment.findByIdAndDelete(_id)
     ]
     Promise
         .all(promises)

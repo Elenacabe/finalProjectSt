@@ -43,7 +43,7 @@ const UserCard = ({ username, avatar, about, _id }) => {
                         <Card.Subtitle className="mb-2 text-muted">
                             <Link to={`/usuarios/detalles/${_id}`} className="btn btn-outline-success mr-2">Detalles</Link>
                             {
-                                isAdmin && { _id } != loggedUser._id || loggedUser._id == _id
+                                isAdmin && { _id } != loggedUser._id
                                 && <Link onClick={handleDelete} className="btn btn-outline-danger mr-2" style={{ margin: '20px' }} >Borrar</Link>
 
                             }

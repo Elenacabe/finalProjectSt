@@ -63,11 +63,11 @@ function Valorations({ storyId, valorations }) {
 
             <div className="btn-group" role="group" aria-label="Basic example">
 
-                <button className="buttonVal" value={1} onClick={newValorationHandler}>😾</button>
-                <button className="buttonVal" value={2} onClick={newValorationHandler}>😿</button>
-                <button className="buttonVal" value={3} onClick={newValorationHandler}>😼</button>
-                <button className="buttonVal" value={4} onClick={newValorationHandler}>😺</button>
-                <button className="buttonVal" value={5} onClick={newValorationHandler}>😻</button>
+                <button className="buttonVal" value={1} onClick={newValorationHandler}>⭐</button>
+                <button className="buttonVal" value={2} onClick={newValorationHandler}>⭐</button>
+                <button className="buttonVal" value={3} onClick={newValorationHandler}>⭐</button>
+                <button className="buttonVal" value={4} onClick={newValorationHandler}>⭐</button>
+                <button className="buttonVal" value={5} onClick={newValorationHandler}>⭐</button>
 
             </div>
 
