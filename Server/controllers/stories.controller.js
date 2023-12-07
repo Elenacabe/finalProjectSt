@@ -33,7 +33,7 @@ const getAllMyStories = (req, res, next) => {
 const mostInteractedStories = (req, res, next) => {
     Story
         .find()
-        .populate('writer comments')//SACAR UTILS
+        .populate('writer comments')
         .then((mostInteracted) => {
             mostInteracted.sort((a, b) => {
                 return (b.valoration.length + b.comments.length) - (a.valoration.length + a.comments.length)
@@ -63,7 +63,7 @@ const getStoryDetails = (req, res, next) => {
         .populate('writer comments')
         .then((story) => {
             if (!story) {
-                return res.status(404).json({ error: 'Historia no encontrada' })
+                return res.status(404).json({ errorMessages: ['Historia no encontrada'] })
             }
             res.json(story)
         })
@@ -77,11 +77,11 @@ const deleteStory = (req, res, next) => {
         .deleteOne({ _id: story_id })
         .then((deletedStory) => {
             if (!deletedStory) {
-                return res.status(404).json({ error: 'Historia no encontrada' })
+                return res.status(404).json({ errorMessages: ['Historia no encontrada'] })
             } else {
                 Comment
                     .deleteMany({ storyId: story_id })
-                    .then(() => res.json({ message: 'Historia borrada y sus commentarios' }))
+                    .then(() => res.json({ errorMessages: ['Historia borrada y sus commentarios'] }))
                     .catch((err) => next(err))
             }
         })
@@ -98,15 +98,16 @@ const valorateStory = (req, res, next) => {
         .findByIdAndUpdate(story_id)
         .then(foundStory => {
             if (foundStory.valoration.some(value => value.userId == user_id)) {
-                console.log('ya has votado')
+                return res.status(404).json({ errorMessages: ['Ya has votado anteriormente.'] })
             } else {
                 foundStory.valoration.push(valor)
-                return foundStory.save()
+                foundStory.save()
+                    .then((historia) => {
+                        return res.json(setAverage(historia))
+                    })
             }
         })
-        .then((historia) => {
-            res.json(setAverage(historia))
-        })
+
         .catch((err) => next(err))
 }
 

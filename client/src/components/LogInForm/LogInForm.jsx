@@ -7,6 +7,7 @@ import { useContext } from "react"
 import "./LoginForm.css"
 
 const LogInForm = () => {
+    const [errors, setErrors] = useState([])
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -32,7 +33,7 @@ const LogInForm = () => {
                 navigate('/')
 
             })
-            .catch((err) => console.log(err))
+            .catch((err) => setErrors(err.response.data.errorMessages))
     }
 
 
@@ -49,8 +50,15 @@ const LogInForm = () => {
             </Form.Group>
 
             <div className="d-grid" >
+                {errors.length > 0 && (
+                    <div>
+                        {errors.map((e, index) => (
+                            <p key={index} style={{ textAlign: 'center' }}>{e}</p>
+                        ))}
+                    </div>
+                )}
                 <Col md={{ offset: 3, span: 6 }}>
-                    <Button md={{ offset: 3, span: 6 }} variant="dark" type="submit">Acceder</Button>
+                    <Button md={{ offset: 3, span: 6 }} className="buttonLike" type="submit">Acceder</Button>
                 </Col>
             </div>
         </Form>

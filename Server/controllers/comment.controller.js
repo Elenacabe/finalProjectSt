@@ -4,7 +4,6 @@ const Story = require('../models/Story.model')
 const newComment = (req, res, next) => {
 
     const { author, comment, storyId } = req.body
-    // TODO: REVISAR
     Comment
         .create({ author, comment, storyId })
         .then((newComment) => {
@@ -31,7 +30,7 @@ const editComment = (req, res, next) => {
         .findByIdAndUpdate(comment_id, { comment }, { new: true })
         .then((updatedComment) => {
             if (!updatedComment) {
-                return res.status(404).json({ error: 'Comentario no encontrado' })
+                return res.status(404).json({ errorMessage: 'Comentario no encontrado' })
             }
             res.json(updatedComment)
         })

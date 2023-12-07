@@ -9,6 +9,7 @@ import uploadService from "../../services/upload.services"
 
 const StoryForm = () => {
     const { loggedUser } = useContext(AuthContext)
+    const [errors, setErrors] = useState([])
 
     const [storyData, setStoryData] = useState({
         writer: loggedUser._id,
@@ -31,7 +32,7 @@ const StoryForm = () => {
         storyService
             .createStory(storyData)
             .then(() => navigate('/'))
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const handleFileUpload = e => {
@@ -69,6 +70,15 @@ const StoryForm = () => {
                     <br />
                     <textarea name="story" id="" cols="73" rows="5" onChange={handleInputChange} value={storyData.story}></textarea>
                 </Form.Group>
+                <div className="d-grid" style={{ textAlign: 'center', color: 'orange' }}>
+                    {errors.length > 0 && (
+                        <div>
+                            {errors.map((e, index) => (
+                                <p key={index}>{e}</p>
+                            ))}
+                        </div>
+                    )}
+                </div>
                 <Form.Group className="mb-3" as={Col} md={{ offset: 3, span: 6 }}>
                     <button className="buttonLike" md={{ offset: 2 }} type="submit">Registrar historia</button>
                 </Form.Group>

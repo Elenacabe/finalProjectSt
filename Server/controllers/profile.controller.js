@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken')
 const getAllUsers = (req, res, next) => {
     User
         .find()
-        // .select()
         .then(users => res.json(users))
         .catch((err) => next(err))
 
@@ -27,7 +26,7 @@ const editProfile = (req, res, next) => {
     User.findById(_id)
         .then((user) => {
             if (!user) {
-                return res.status(404).json({ message: 'User not found' })
+                return res.status(404).json({ errorMessages: 'Usuario no encontrado' })
             }
             const { username, avatar, role, about } = user
             res.json({ username, avatar, role, about })

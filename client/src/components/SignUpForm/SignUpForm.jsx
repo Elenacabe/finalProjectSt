@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 
 const SignUpForm = () => {
-
+    const [errors, setErrors] = useState([])
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
@@ -31,7 +31,7 @@ const SignUpForm = () => {
             .then(response => {
                 setSignupData({ ...signupData, avatar: response.data.cloudinary_url })
             })
-            .catch(err => console.log(err))
+            .catch((err) => console.log(err))
     }
 
     const navigate = useNavigate()
@@ -42,7 +42,7 @@ const SignUpForm = () => {
         authService
             .signup(signupData)
             .then(() => navigate('/'))
-            .catch(err => console.log(err))
+            .catch((err) => setErrors(err.response.data.errorMessages))
     }
 
 
@@ -77,16 +77,20 @@ const SignUpForm = () => {
                 <Form.Control type="password" value={signupData.password} onChange={handleInputChange} name="password" className="custom-input" />
             </Form.Group>
 
-            <div className="d-grid" >
+            <div className="d-grid" style={{ textAlign: 'center', color: 'orange' }}>
+                {errors.length > 0 && (
+                    <div>
+                        {errors.map((e, index) => (
+                            <p key={index}>{e}</p>
+                        ))}
+                    </div>
+                )}
+
                 <Col md={{ offset: 3, span: 6 }}>
-                    <Button md={{ offset: 3, span: 3 }} variant="dark" type="submit">Registrarme</Button>
+                    <Button md={{ offset: 3, span: 3 }} className="buttonLike" type="submit">Registrarme</Button>
                 </Col>
             </div>
-            {/* <div className="d-grid gap-2">
-                <Button as={Col} md={{ offset: 3, span: 6 }} variant="dark" type="submit">
-                    Registrarme
-                </Button>
-            </div> */}
+
         </Form >
 
     )

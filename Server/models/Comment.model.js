@@ -8,7 +8,7 @@ const commentSchema = new Schema({
     },
     comment: {
         type: String,
-        required: true
+        required: [true, 'Es necesario que escribas algo']
 
     },
     storyId: {

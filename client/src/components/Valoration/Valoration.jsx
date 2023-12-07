@@ -6,6 +6,7 @@ import "./Valoration.css"
 import { Card, Row, Col } from "react-bootstrap"
 
 function Valorations({ storyId, valorations }) {
+    const [errors, setErrors] = useState([])
     const [average, setAverage] = useState(null)
     const [valoration, setValoration] = useState(valorations)
     const [newValoration, setNewValoration] = useState(valorations)
@@ -24,7 +25,7 @@ function Valorations({ storyId, valorations }) {
                     setAverage(data)
                 }
             })
-            .catch((err) => console.log('No hemos podido registrar el voto'))
+            .catch((err) => setErrors(err.response.data.errorMessages))
     }
 
     const newValorationHandler = (e) => {
@@ -39,6 +40,7 @@ function Valorations({ storyId, valorations }) {
                 setLength(length + 1)
                 setValoration('')
             })
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
 
@@ -47,6 +49,15 @@ function Valorations({ storyId, valorations }) {
         <Card className="valorationGroup">
             {length == 1 && <p>{length} voto</p>}
             {length > 1 && <p>{length} votos</p>}
+            <div className="d-grid" style={{ textAlign: 'center', color: 'orange' }}>
+                {errors.length > 0 && (
+                    <div>
+                        {errors.map((e, index) => (
+                            <p key={index}>{e}</p>
+                        ))}
+                    </div>
+                )}
+            </div>
 
             <p>{average} puntos </p>
 

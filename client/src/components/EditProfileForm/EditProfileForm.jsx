@@ -8,6 +8,7 @@ import { AuthContext } from "../../contexts/auth.context"
 
 
 const EditProfileForm = () => {
+    const [errors, setErrors] = useState([])
 
     const { loggedUser, authenticateUser } = useContext(AuthContext)
     const [editProfileData, setEditProfileData] = useState({
@@ -34,7 +35,7 @@ const EditProfileForm = () => {
                 authenticateUser()
                 navigate('/usuarios')
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const handleFileUpload = e => {
@@ -64,8 +65,14 @@ const EditProfileForm = () => {
                         <Form.Label>Descripción</Form.Label>
                         <Form.Control type="text" value={editProfileData.about} onChange={handleInputChange} name="about" className="custom-input" />
                     </Form.Group>
-
-                    <div className="d-grid" >
+                    <div className="d-grid" style={{ textAlign: 'center', color: 'orange' }}>
+                        {errors.length > 0 && (
+                            <div>
+                                {errors.map((e, index) => (
+                                    <p key={index}>{e}</p>
+                                ))}
+                            </div>
+                        )}
                         <Col md={{ offset: 3, span: 6 }}>
                             <button md={{ offset: 3, span: 3 }} className="buttonLike" type="submit">Editar</button>
                         </Col>

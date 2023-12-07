@@ -9,27 +9,29 @@ const signUp = (req, res, next) => {
     const { email, password, username, avatar, birthDate, about } = req.body
 
     if (password.length < 2) {
-        res.status(400).json({ message: 'Password must have at least 3 characters' })
-        return
+        return res.status(400).json({ errorMessages: ['La contraseña debe tener 3 caracteres al menos'] })
     }
 
+    return (
 
-    User
-        .findOne({ email })
-        .then((foundUser) => {
 
-            if (foundUser) {
-                res.status(400).json({ message: "User already exists." })
-                return
-            }
 
-            const salt = bcrypt.genSaltSync(saltRounds)
-            const hashedPassword = bcrypt.hashSync(password, salt)
+        User
+            .findOne({ email })
+            .then((foundUser) => {
 
-            return User.create({ email, password: hashedPassword, username, avatar, birthDate, about })
-        })
-        .then(() => res.sendStatus(201))
-        .catch(err => next(err))
+                if (foundUser) {
+                    return res.status(400).json({ errorMessages: ["El user ya existe"] })
+
+                }
+
+                const salt = bcrypt.genSaltSync(saltRounds)
+                const hashedPassword = bcrypt.hashSync(password, salt)
+
+                return User.create({ email, password: hashedPassword, username, avatar, birthDate, about })
+            })
+            .then(() => res.sendStatus(201))
+            .catch(err => next(err)))
 }
 
 const logIn = (req, res, next) => {
@@ -37,7 +39,7 @@ const logIn = (req, res, next) => {
     const { email, password } = req.body
 
     if (email === '' || password === '') {
-        res.status(400).json({ message: "Provide email and password." });
+        res.status(400).json({ errorMessages: ["Email y contraseña requeridos."] });
         return;
     }
 
@@ -46,7 +48,7 @@ const logIn = (req, res, next) => {
         .then((foundUser) => {
 
             if (!foundUser) {
-                res.status(401).json({ message: "User not found." })
+                res.status(401).json({ errorMessages: ["Usuario no encontrado."] })
                 return;
             }
 
@@ -65,7 +67,7 @@ const logIn = (req, res, next) => {
 
             }
             else {
-                res.status(401).json({ message: "Incorrect password" });
+                res.status(401).json({ errorMessages: ["Los datos son incorrectos"] });
             }
 
         })

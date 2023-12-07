@@ -1,14 +1,11 @@
 const { Schema, model } = require("mongoose")
 const validateAge = require("../utils/validateAge")
 
-//pasar a utils?
-
-
 const userSchema = new Schema(
   {
     email: {
       type: String,
-      required: [true, 'Email is required.'],
+      required: [true, 'El email es necesario.'],
       unique: true,
       lowercase: true,
       trim: true
@@ -16,13 +13,13 @@ const userSchema = new Schema(
     username: {
       type: String,
       trim: true,
-      required: true,
+      required: [true, 'El username es necesario'],
       unique: true
 
     },
     birthDate: {
       type: Date,
-      required: true,
+      required: [true, 'Es necesario saber tu día de nacimiento'],
       validate: [validateAge, 'Debes tener al menos 18 años.']
     },
     avatar: {
@@ -30,8 +27,8 @@ const userSchema = new Schema(
     },
     about: {
       type: String,
-      default: 'Descripción no aportada',
-      minLength: [10, 'Debes escribir al menos 10 caracteres']
+      required: [true, 'La descripción es necesaria'],
+      minLength: [10, 'Debes escribir al menos 10 caracteres como descripción']
     },
     role: {
       type: String,

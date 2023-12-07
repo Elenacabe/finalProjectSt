@@ -7,11 +7,12 @@ const storySchema = new Schema({
     },
     title: {
         type: String,
-        required: true
+        required: [true, 'El título es necesario']
     },
     story: {
         type: String,
-        required: true,
+        required: [true, 'Tienes que escribir una historia'],
+        minLength: [100, "No puede contener menos de 100 caracteres"],
         maxLength: [700, "No puedes pasarte de 700 caracteres"]
     },
 
@@ -22,7 +23,7 @@ const storySchema = new Schema({
     valoration:
         [{
             userId: { type: Schema.Types.ObjectId, ref: 'User' },
-            vote: { type: Number, enum: [0, 1, 2, 3, 4, 5] }
+            vote: { type: Number, enum: [1, 2, 3, 4, 5] }
         }]
     ,
 
