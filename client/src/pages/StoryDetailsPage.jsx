@@ -45,9 +45,9 @@ function StoryDetailsPage() {
                         <Row>
                             <Col md={{ span: 6 }}>
                                 <Card className="detailsFlash">
-                                    <Card.Img variant="top" src={storyDetails.cover} />
+                                    <Card.Img variant="top" style={{ maxHeight: '600px', maxWidth: '400px', margin: '0 auto' }} src={storyDetails.cover} />
                                     <Card.Body>
-                                        <h1 className="orangeFlash">{storyDetails.title}</h1>
+                                        <h1 className="orangeT">{storyDetails.title}</h1>
                                         <Card.Text>
                                             {storyDetails.story}
 

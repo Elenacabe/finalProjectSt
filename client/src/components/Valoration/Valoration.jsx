@@ -47,6 +47,7 @@ function Valorations({ storyId, valorations }) {
     return (
 
         <Card className="valorationGroup">
+            {!length && <p>Ningún voto</p>}
             {length == 1 && <p>{length} voto</p>}
             {length > 1 && <p>{length} votos</p>}
             <div className="d-grid" style={{ textAlign: 'center', color: 'orange' }}>
@@ -59,7 +60,7 @@ function Valorations({ storyId, valorations }) {
                 )}
             </div>
 
-            <p>{average} puntos </p>
+            {average >= 1 && <p> {average} puntos </p>}
 
             <div className="btn-group" role="group" aria-label="Basic example">
 
